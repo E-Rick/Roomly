@@ -12,13 +12,15 @@ middlewareObj.checkRoomOwnership = (req, res, next) => {
   if (req.isAuthenticated()) {
     Room.findById(req.params.id, (err, foundRoom) => {
       if (err || !foundRoom) {
-        req.flash('error', 'Room not found');
+        req.flash('error', 'Room not found check room ownership');
         res.redirect('/rooms');
       } else {
         // does user own the room?
         // have to use .equals because foundroom is a mongoose obj not string
-        if (foundRoom.author.id.equals(req.user._id)) next();
-        else {
+        if (foundRoom.author.id.equals(req.user._id)) {
+          req.room = foundRoom;
+          next();
+        } else {
           req.flash('error', 'You do not have permission to do that!');
           res.redirect('/rooms');
         }
@@ -29,6 +31,19 @@ middlewareObj.checkRoomOwnership = (req, res, next) => {
     req.flash('error', 'You need to be logged in to do that');
     res.redirect('/login');
   }
+};
+
+// Checks database for existance of room else returns err
+// Passes valid room object through
+middlewareObj.checkRoom = (req, res, next) => {
+  Room.findById(req.params.id, (err, foundRoom) => {
+    if (err || !foundRoom) {
+      req.flash('error', 'Sorry, no room found with that ID!');
+      return res.redirect('/rooms');
+    }
+    req.room = foundRoom; // send valid room to req for next
+    next();
+  });
 };
 
 middlewareObj.checkCommentOwnership = (req, res, next) => {
