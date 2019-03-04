@@ -60,4 +60,6 @@ app.use((req, res) => {
   res.redirect('/');
 });
 
-app.listen(3000, () => {});
+app.listen(3000, () => {
+  console.log('RoomGenie server has started');
+});
