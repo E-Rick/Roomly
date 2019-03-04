@@ -16,7 +16,7 @@ const commentRoutes = require('./routes/comments'),
   reviewRoutes = require('./routes/reviews'),
   indexRoutes = require('./routes/index');
 
-mongoose.connect('mongodb://localhost:27017/yelp_camp', {
+mongoose.connect('mongodb://localhost:27017/room_genie', {
   useNewUrlParser: true,
   useFindAndModify: false
 });

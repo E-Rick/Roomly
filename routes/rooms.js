@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
         return res.redirect('back');
       }
       // render show template with that room
-      return res.render('rooms/show', { room: foundRoom });
+      res.render('rooms/show', { room: foundRoom });
     });
 });
 
