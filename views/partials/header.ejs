@@ -15,9 +15,6 @@
   </head>
 
   <body>
-    <div class="container">
-    
-    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <a class="navbar-brand" href="/">RoomGenie</a>
       <button
@@ -33,31 +30,19 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">
-            <a class="nav-link" href="/rooms">Home</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-          <li class="nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
-            <a class="nav-link" href="/rooms/new">Become a host</a>
-          </li>
+        <div class="navbar-nav mr-auto">
+          <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Home</a>
+        </div>
+        <div class="navbar-nav navbar-right">
+          <a href="/rooms/new" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
           <% if(!currentUser){ %>
-            <li class="nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
-              <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
-              <a class="nav-link" href="/register">Sign Up</a>
-            </li>
+          <a href="/login" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">Login</a>
+          <a href="/register" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">Register</a>
           <% } else { %>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Signed In As <%= currentUser.username %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
+            <a class="nav-link nav-item" href="#">Signed In As <%= currentUser.username %></a>
+            <a href="/logout" class="nav-link nav-item">Logout</a>
           <% } %>
-        </ul>
+          </div>
       </div>
     </nav>
 
