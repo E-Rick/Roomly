@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
 const express = require('express'),
   router = express.Router({ mergeParams: true }),
   Room = require('../models/room'),
@@ -32,35 +31,22 @@ router.get('/', (req, res) => {
 });
 
 // CREATE - Add new review to database
-router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, (req, res) => {
+router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, async (req, res) => {
   // lookup room using ID
-  Room.findById(req.params.id)
-    .populate('reviews')
-    .exec((err, room) => {
-      if (err) {
-        req.flash('error', err.message);
-        return res.redirect('back');
-      }
-      Review.create(req.body.review, (e, review) => {
-        if (e) {
-          req.flash('error', e.message);
-          return res.redirect('back');
-        }
-        // add author username/id and associated room to the review
-        review.author.id = req.user._id;
-        review.author.username = req.user.username;
-        review.room = room;
-        // save review
-        review.save();
-        room.reviews.push(review);
-        // calculate the new average review for the room
-        room.rating = calculateAverage(room.reviews);
-        // save room
-        room.save();
-        req.flash('success', 'Your review has been successfully added.');
-        return res.redirect(`/rooms/${room._id}`);
-      });
-    });
+  const room = await Room.findById(req.params.id)
+      .populate('reviews')
+      .exec(),
+    review = await Review.create(req.body.review);
+  // add author username/id and associated room to the review
+  review.author.id = req.user._id;
+  review.author.username = req.user.username;
+  review.room = room;
+  review.save();
+  room.reviews.push(review);
+  room.rating = calculateAverage(room.reviews); // calculate the new average review for the room
+  room.save();
+  req.flash('success', 'Your review has been successfully added.');
+  return res.redirect(`/rooms/${room._id}`);
 });
 
 // NEW - Show form to create new review
