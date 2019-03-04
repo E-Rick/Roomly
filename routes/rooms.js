@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
     })
     .exec((err, foundRoom) => {
       if (err || !foundRoom) {
-        req.flash('error', 'Room not found');
+        req.flash('error', 'Room not found show');
         return res.redirect('back');
       }
       // render show template with that room
@@ -58,9 +58,7 @@ router.get('/:id', (req, res) => {
 
 // EDIT - Show form to edit room
 router.get('/:id/edit', middleWare.checkRoomOwnership, (req, res) => {
-  Room.findById(req.params.id, (err, foundRoom) => {
-    res.render('rooms/edit', { room: foundRoom });
-  });
+  res.render('rooms/edit', { room: req.room });
 });
 
 // UPDATE - Update route to update room
