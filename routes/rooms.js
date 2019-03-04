@@ -34,7 +34,7 @@ router.post('/', middleWare.isLoggedIn, (req, res) => {
 
 // NEW - Show form to create new room
 router.get('/new', middleWare.isLoggedIn, (req, res) => {
-  res.render('rooms/new');
+  res.render('rooms/new', { page: 'new' });
 });
 
 // SHOW - Show more  info about one room
