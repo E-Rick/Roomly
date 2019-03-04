@@ -36,13 +36,13 @@
         <div class="navbar-nav navbar-right">
           <a href="/rooms/new" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
           <% if(!currentUser){ %>
-          <a href="/login" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">Login</a>
-          <a href="/register" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">Register</a>
+            <a href="/login" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">Login</a>
+            <a href="/register" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">Register</a>
           <% } else { %>
             <a class="nav-link nav-item" href="#">Signed In As <%= currentUser.username %></a>
             <a href="/logout" class="nav-link nav-item">Logout</a>
           <% } %>
-          </div>
+        </div>
       </div>
     </nav>
 
