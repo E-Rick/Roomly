@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
         req.flash('error', err.message);
         return res.redirect('back');
       }
-      return res.render('reviews/index', { room });
+      res.render('reviews/index', { room });
     });
 });
 
@@ -63,76 +63,40 @@ router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, (req, r
     });
 });
 
-// NEW - Show form to create new room
-router.get('/new', middleware.isLoggedIn, middleware.checkReviewExistence, (req, res) => {
-  // middleware.checkReviewExistence checks if a user already reviewed the room
-  // only one review per user is allowed
-  Room.findById(req.params.id, (err, room) => {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    return res.render('reviews/new', { room });
-  });
+// NEW - Show form to create new review
+router.get('/new', middleware.isLoggedIn, middleware.checkReviewExistence, middleware.checkRoom, (req, res) => {
+  res.render('reviews/new', { room: req.room });
 });
 
 // Reviews Edit
-router.get('/:review_id/edit', middleware.checkReviewOwnership, (req, res) => {
-  Review.findById(req.params.review_id, (err, foundReview) => {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    return res.render('reviews/edit', { room_id: req.params.id, review: foundReview });
-  });
+router.get('/:review_id/edit', middleware.checkRoom, middleware.checkReviewOwnership, async (req, res) => {
+  res.render('reviews/edit', { room_id: req.params.id, review: req.review });
 });
 
 // Reviews Update
-router.put('/:review_id', middleware.checkReviewOwnership, (req, res) => {
-  Review.findByIdAndUpdate(req.params.review_id, req.body.review, { new: true }, err => {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    Room.findById(req.params.id)
-      .populate('reviews')
-      .exec((error, room) => {
-        if (error) {
-          req.flash('error', error.message);
-          return res.redirect('back');
-        }
-        // recalculate room average
-        room.rating = calculateAverage(room.reviews);
-        // save changes
-        room.save();
-        req.flash('success', 'Your review was successfully edited.');
-        return res.redirect(`/rooms/${room._id}`);
-      });
-  });
+router.put('/:review_id', middleware.checkReviewOwnership, async (req, res) => {
+  await Review.findByIdAndUpdate(req.params.review_id, req.body.review, { new: true });
+  const room = await Room.findById(req.params.id)
+    .populate('reviews')
+    .exec();
+  // recalculate room average
+  room.rating = calculateAverage(room.reviews);
+  room.save();
+  req.flash('success', 'Your review was successfully edited.');
+  res.redirect(`/rooms/${room._id}`);
 });
 
 // Reviews Delete
-router.delete('/:review_id', middleware.checkReviewOwnership, (req, res) => {
-  Review.findByIdAndRemove(req.params.review_id, err => {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    Room.findByIdAndUpdate(req.params.id, { $pull: { reviews: req.params.review_id } }, { new: true })
-      .populate('reviews')
-      .exec((error, room) => {
-        if (error) {
-          req.flash('error', error.message);
-          return res.redirect('back');
-        }
-        // recalculate room average
-        room.rating = calculateAverage(room.reviews);
-        // save changes
-        room.save();
-        req.flash('success', 'Your review was deleted successfully.');
-        return res.redirect(`/rooms/${req.params.id}`);
-      });
-  });
+router.delete('/:review_id', middleware.checkReviewOwnership, async (req, res) => {
+  await Review.findByIdAndRemove(req.params.review_id);
+  const room = await Room.findByIdAndUpdate(req.params.id, { $pull: { reviews: req.params.review_id } }, { new: true })
+    .populate('reviews')
+    .exec();
+  // recalculate room average
+  room.rating = calculateAverage(room.reviews);
+  room.save();
+  req.flash('success', 'Your review was deleted successfully.');
+  res.redirect(`/rooms/${req.params.id}`);
 });
 
 module.exports = router;

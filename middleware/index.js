@@ -70,14 +70,18 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
   }
 };
 
+// middleware.checkReviewExistence checks if a user already reviewed the room
+// only one review per user is allowed
 middlewareObj.checkReviewOwnership = (req, res, next) => {
   if (req.isAuthenticated()) {
     Review.findById(req.params.review_id, (err, foundReview) => {
       if (err || !foundReview) {
-        res.redirect('back');
+        req.flash('error', 'Sorry, no review found with that id');
+        res.redirect('/rooms');
       } else {
         // does user own the comment?
         if (foundReview.author.id.equals(req.user._id) || req.user.isAdmin) {
+          req.review = foundReview;
           next();
         } else {
           req.flash('error', "You don't have permission to do that");
