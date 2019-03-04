@@ -2,6 +2,7 @@
 const express = require('express'),
   router = express.Router(),
   Room = require('../models/room'),
+  Comment = require('../models/comment'),
   middleWare = require('../middleware'),
   Review = require('../models/review');
 
@@ -14,22 +15,15 @@ router.get('/', (req, res) => {
 });
 
 // CREATE - Add new room to database
-router.post('/', middleWare.isLoggedIn, (req, res) => {
-  // get data from form and add to rooms array
+router.post('/', middleWare.isLoggedIn, async (req, res) => {
   // directly attach author to existing req.body.room obj (retrieved from post form data after body-parser processes)
   req.body.room.author = {
     id: req.user._id,
     username: req.user.username
   };
-  // create new room and save to DB
-  Room.create(req.body.room, (err, newRoom) => {
-    if (err) req.flash('error', 'Error occurred making listing');
-    else {
-      // redirect back to room page
-      req.flash('success', 'Successfully created listing!');
-      res.redirect(`/rooms/${newRoom._id}`);
-    }
-  });
+  const room = await Room.create(req.body.room);
+  req.flash('success', 'Successfully created listing!');
+  res.redirect(`/rooms/${room._id}`);
 });
 
 // NEW - Show form to create new room
@@ -62,29 +56,21 @@ router.get('/:id/edit', middleWare.checkRoomOwnership, (req, res) => {
 });
 
 // UPDATE - Update route to update room
-router.put('/:id', middleWare.checkRoomOwnership, (req, res) => {
+router.put('/:id', middleWare.checkRoomOwnership, async (req, res) => {
   // security measure to protect against rating maniputlation
   delete req.body.room.rating;
-  Room.findByIdAndUpdate(req.params.id, req.body.room, err => {
-    if (err) res.redirect('/rooms');
-    res.redirect(`/rooms/${req.params.id}`); // redirect (show page)
-  });
+  await Room.findByIdAndUpdate(req.params.id, req.body.room);
+  res.redirect(`/rooms/${req.params.id}`); // redirect (show page)
 });
 
 // DESTROY - Delete Room route
-router.delete('/:id', middleWare.checkRoomOwnership, (req, res) => {
-  Room.findById(req.params.id, (err, room) => {
-    if (err) return res.redirect('/rooms');
-    // deletes all reviews associated with the room
-    Review.deleteMany({ _id: { $in: room.reviews } }, error => {
-      if (error) {
-        return res.redirect('/rooms');
-      }
-      room.remove(); // delete the room
-      req.flash('success', `Listing "${room.name}" deleted successfully!`);
-      return res.redirect('/rooms');
-    });
-  });
+// deletes all reviews & comments associated with the room
+router.delete('/:id', middleWare.checkRoomOwnership, async (req, res) => {
+  await Comment.deleteMany({ _id: { $in: req.room.comments } });
+  await Review.deleteMany({ _id: { $in: req.room.reviews } });
+  req.room.remove(); // delete the room
+  req.flash('success', `Listing "${req.room.name}" deleted successfully!`);
+  res.redirect('/rooms');
 });
 
 module.exports = router;
