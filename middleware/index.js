@@ -17,7 +17,7 @@ middlewareObj.checkRoomOwnership = (req, res, next) => {
       } else {
         // does user own the room?
         // have to use .equals because foundroom is a mongoose obj not string
-        if (foundRoom.author.id.equals(req.user._id)) {
+        if (foundRoom.author.id.equals(req.user._id) || req.user.isAdmin) {
           req.room = foundRoom;
           next();
         } else {
@@ -56,7 +56,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
       } else {
         // does user own the comment
         // have to use .equals because foundcomment is a mongoose obj not string
-        if (foundComment.author.id.equals(req.user._id)) next();
+        if (foundComment.author.id.equals(req.user._id) || req.user.isAdmin) next();
         else {
           req.flash('error', 'You do not have permission to do that!');
           res.redirect('/rooms');
@@ -77,7 +77,7 @@ middlewareObj.checkReviewOwnership = (req, res, next) => {
         res.redirect('back');
       } else {
         // does user own the comment?
-        if (foundReview.author.id.equals(req.user._id)) {
+        if (foundReview.author.id.equals(req.user._id) || req.user.isAdmin) {
           next();
         } else {
           req.flash('error', "You don't have permission to do that");

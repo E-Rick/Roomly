@@ -11,7 +11,7 @@
         <p><em>Submitted By <%= room.author.username %></em></p>
         <hr />
         <p class="card-text"><%= room.description %></p>
-        <% if (currentUser && room.author.id.equals(currentUser._id)) { %>
+        <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
         <a href="/rooms/<%= room._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
         <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">
           <button class="btn btn-sm btn-danger">Delete</button>
@@ -51,7 +51,7 @@
             <p style="text-align: justify; word-wrap: break-word;">
               <%= review.text %>
             </p>
-            <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
+            <% if(currentUser && (review.author.id.equals(currentUser._id) || currentUser.isAdmin)){ %>
             <a class="btn btn-sm btn-warning float-left mr-1"
               href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
             <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE"
@@ -76,7 +76,7 @@
       </div>
     </div>
     <%  %>
-    <div class="card">
+    <div class="card mb-3">
       <div class="card-body">
         <%# Add Comment button section %>
         <div class="text-right">
@@ -90,7 +90,7 @@
             <strong><%= comment.author.username %></strong>
             <span class="float-right">10 days ago</span>
             <p class="card-text "><%= comment.text %></p>
-            <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+            <% if (currentUser && (comment.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
             <div class="float-right">
               <a href="/rooms/<%= room._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">
                 Edit
