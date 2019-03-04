@@ -7,55 +7,45 @@ const express = require('express'),
   middleware = require('../middleware'),
   router = express.Router({ mergeParams: true });
 
+const noRoomFound = 'No room found with that ID.';
+
 // Comments - New
-router.get('/new', middleware.isLoggedIn, (req, res) => {
-  // find room by id
-  Room.findById(req.params.id, (err, room) => {
-    if (err || !room) {
-      req.flash('error', 'No room found here');
-      res.redirect('back');
-    } else {
-      res.render('comments/new', { room });
-    }
-  });
+router.get('/new', middleware.checkRoom, (req, res) => {
+  res.render('comments/new', { room: req.room });
 });
 
 // Comments - Create
 router.post('/', middleware.isLoggedIn, async (req, res) => {
   // lookup room using ID
-  let room = await Room.findById(req.params.id);
-  if (!room) {
-    req.flash('error', 'Something went wrong');
+  try {
+    const room = await Room.findById(req.params.id),
+      comment = await Comment.create(req.body.comment);
+    // add username and id to comment
+    comment.author.id = req.user._id;
+    comment.author.username = req.user.username;
+    // save comment
+    comment.save();
+    room.comments.push(comment);
+    room.save();
+    req.flash('success', 'Successfully added comment');
+    res.redirect(`/rooms/${room._id}`);
+  } catch (e) {
+    req.flash('error', noRoomFound);
     res.redirect('/rooms');
   }
-  let comment = await Comment.create(req.body.comment);
-  // add username and id to comment
-  comment.author.id = req.user._id;
-  comment.author.username = req.user.username;
-  // save comment
-  comment.save();
-  room.comments.push(comment);
-  room.save();
-  req.flash('success', 'Successfully added comment');
-  res.redirect(`/rooms/${room._id}`);
 });
 
 // Comments - Edit
-router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res) => {
-  Room.findById(req.params.id, (err, foundRoom) => {
-    if (err || !foundRoom) {
-      req.flash('error', 'No room found');
-      return res.redirect('back');
-    }
-    Comment.findById(req.params.comment_id, (error, foundComment) => {
-      if (error || !foundComment) {
-        req.flash('error', 'Comment not found');
-        res.redirect('/rooms');
-      } else {
-        res.render('comments/edit', { room_id: req.params.id, comment: foundComment });
-      }
-    });
-  });
+router.get('/:comment_id/edit', middleware.checkCommentOwnership, async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id);
+    if (!room) throw new Error(noRoomFound);
+    const comment = await Comment.findById(req.params.comment_id);
+    res.render('comments/edit', { room_id: req.params.id, comment });
+  } catch (e) {
+    req.flash('error', noRoomFound);
+    res.redirect('/rooms');
+  }
 });
 
 // Comments - Update
