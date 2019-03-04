@@ -1,6 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable consistent-return */
-/* eslint-disable no-underscore-dangle */
 const express = require('express'),
   Comment = require('../models/comment.js'),
   middleware = require('../middleware'),

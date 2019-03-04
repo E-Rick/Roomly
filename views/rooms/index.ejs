@@ -9,7 +9,7 @@
   <% rooms.forEach(function(room){ %>
   <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
     <div class="card">
-      <img src="<%= room.image %>" class="card-img-top" alt="<%= room.name %>" />
+      <img src="<%= room.image %>" class="card-img-top thumbnails" alt="<%= room.name %>" />
       <div class="card-body">
         <h5 class="card-title"><%= room.name %></h5>
         <% if (room.rating === 0) { %>
