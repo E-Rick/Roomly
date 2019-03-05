@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-unused-vars */
 let count;
 function starmark(item) {
   let i = 0;
