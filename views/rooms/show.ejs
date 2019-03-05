@@ -4,13 +4,16 @@
   <div class="col-md-9">
     <%# Show room card %>
     <div class="card mb-3">
-      <img src="<%= room.image %>" class="card-img-top" alt="<%= room.name %>" />
+      <img src="<%= room.image %>" class="card-img-top show-images" alt="<%= room.name %>" />
       <div class="card-body">
         <p class="float-right">$<%= room.price %>/night</p>
-        <h5 class="card-title"><%= room.name %></h5>
+        <h5 class="card-title"><strong><%= room.name %></strong></h5>
         <p><em>Submitted By <%= room.author.username %></em></p>
         <hr />
         <p class="card-text"><%= room.description %></p>
+        <hr>
+        <p class="card-text"><strong>Amenities</strong></p>
+        <p class="card-text"></p>
         <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
         <a href="/rooms/<%= room._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
         <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">

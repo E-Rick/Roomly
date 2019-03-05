@@ -32,11 +32,11 @@ router.get('/', (req, res) => {
 
 // CREATE - Add new review to database
 router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, async (req, res) => {
-  // lookup room using ID
   const room = await Room.findById(req.params.id)
       .populate('reviews')
       .exec(),
     review = await Review.create(req.body.review);
+  if (!review.rating) req.flash('error', 'Please fill out the rating');
   // add author username/id and associated room to the review
   review.author.id = req.user._id;
   review.author.username = req.user.username;
@@ -56,7 +56,8 @@ router.get('/new', middleware.isLoggedIn, middleware.checkReviewExistence, middl
 
 // Reviews Edit
 router.get('/:review_id/edit', middleware.checkRoom, middleware.checkReviewOwnership, async (req, res) => {
-  res.render('reviews/edit', { room_id: req.params.id, review: req.review });
+  console.log(typeof req.review.rating);
+  res.render('reviews/edit', { room: req.room, review: req.review });
 });
 
 // Reviews Update

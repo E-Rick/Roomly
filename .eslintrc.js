@@ -1,5 +1,9 @@
 module.exports = {
   extends: 'airbnb-base',
+  env: {
+    browser: true,
+    node: true
+  },
   rules: {
     'linebreak-style': 0, // <----------
     'prefer-const': [
@@ -13,6 +17,7 @@ module.exports = {
     'one-var': ['error', 'consecutive'],
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
     'arrow-parens': ['error', 'as-needed'],
-    'max-len': ['error', { code: 125 }]
+    'max-len': ['error', { code: 125 }],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }]
   }
 };

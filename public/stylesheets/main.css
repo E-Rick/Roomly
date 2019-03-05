@@ -19,6 +19,11 @@ body {
   margin: 20px 0;
 }
 
+.rating-stars {
+  font-size: 40px;
+  cursor: pointer;
+}
+
 .thumbnails {
   width: 100%;
   height: 15vh;
