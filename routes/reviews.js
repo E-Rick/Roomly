@@ -56,7 +56,6 @@ router.get('/new', middleware.isLoggedIn, middleware.checkReviewExistence, middl
 
 // Reviews Edit
 router.get('/:review_id/edit', middleware.checkRoom, middleware.checkReviewOwnership, async (req, res) => {
-  console.log(typeof req.review.rating);
   res.render('reviews/edit', { room: req.room, review: req.review });
 });
 
