@@ -21,7 +21,7 @@ router.post('/register', (req, res) => {
     if (err) return res.render('register', { error: err.message });
     passport.authenticate('local');
     req.flash('success', `Successfully signed Up ${user.username}!`);
-    res.redirect('/rooms');
+    return res.redirect('/rooms');
   });
 });
 
