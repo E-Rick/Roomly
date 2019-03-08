@@ -29,6 +29,10 @@ h1 {
   color: #2c2928;
 }
 
+.alert {
+  margin-top: 1rem;
+}
+
 .form-signin {
   margin-top: 20%;
   margin-bottom: 1rem;
@@ -107,4 +111,9 @@ hr:after {
   background-color: #fcfcfa;
 }
 
-@media();
+@media (max-width: 767.98px) {
+  .navbar-brand {
+    height: 70px;
+    width: 70px;
+  }
+}

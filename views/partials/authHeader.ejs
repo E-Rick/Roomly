@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roomly</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-lg py-0 fixed-top">
+      <a href="/" class="navbar-brand"><img src="/images/roomly-logo-01.svg" alt=""/></a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="d-none d-md-block col-md-6" id="loginPhoto">
+        </div>
+        <div class="col-md-6 form text-center">
+          <!-- Flash message -->
+          <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+            <%= error %>
+            </div>
+          <% } %> <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+              <%= success %>
+            </div>
+          <% } %>
