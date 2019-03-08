@@ -1,0 +1,110 @@
+@font-face {
+  font-family: timeBurner;
+  src: url(/public/fonts/timeburnernormal.ttf);
+}
+
+@font-face {
+  font-family: timeBurner;
+  src: url(/fonts/timeburnerbold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: anodina;
+  src: url(/fonts/Anodina/Anodina.Regular.otf);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  font-family: 'anodina', sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h1 {
+  color: #2c2928;
+}
+
+.form-signin {
+  margin-top: 20%;
+  margin-bottom: 1rem;
+}
+
+.navbar-brand {
+  height: 80px;
+  width: 80px;
+}
+
+.btn-primary {
+  background-color: #f7a8ab;
+  border-color: #f7a8ab;
+  color: white;
+  font-size: 2rem;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
+.btn-primary:hover {
+  background-color: #ce5257;
+  color: white;
+}
+
+.other .btn {
+  margin: 1rem 0.5rem;
+  padding: 0.7rem 4rem;
+}
+
+.text-link {
+  color: #a07d87;
+}
+
+.text-link:hover {
+  color: #ce5257;
+}
+
+#loginPhoto {
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: url(/images/login.jpg) center center no-repeat;
+  background-size: cover;
+}
+
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+}
+
+hr:before {
+  content: '';
+  background: linear-gradient(to right, transparent, #818078, transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+
+hr:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  color: black;
+  /* this is really the only tricky part, you need to specify the background color of the container element... */
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  color: #818078;
+  background-color: #fcfcfa;
+}
+
+@media();

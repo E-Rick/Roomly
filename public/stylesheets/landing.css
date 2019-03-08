@@ -4,14 +4,19 @@
 }
 
 @font-face {
-  font-family: timeBurnerBold;
+  font-family: timeBurner;
   src: url(/public/fonts/timeburnerbold.ttf);
   font-weight: bold;
 }
 
+@font-face {
+  font-family: anodina;
+  src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
+}
+
 body {
   background-color: #000;
-  font-family: 'timeBurner', sans-serif;
+  font-family: 'anodina', sans-serif;
 }
 
 .navbar-brand {
@@ -20,6 +25,7 @@ body {
 }
 
 #landing-header {
+  font-family: timeBurner;
   z-index: 1;
   position: relative;
   text-align: center;
@@ -45,7 +51,7 @@ body {
 }
 
 #mainNavbar .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .navbar.scrolled {
   background: rgb(222, 192, 222);

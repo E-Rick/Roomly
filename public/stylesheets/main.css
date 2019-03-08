@@ -1,6 +1,12 @@
 @font-face {
   font-family: Anodina;
-  src: url(/public/fonts/Anodina/Anodina-Bold.otf);
+  src: url(/public/fonts/Anodina/Anodina-Regular.otf);
+}
+
+@font-face {
+  font-family: Anodina;
+  src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
+  font-weight: bold;
 }
 
 html {
@@ -11,6 +17,10 @@ html {
 body {
   height: 100%;
   margin-bottom: 60px;
+}
+
+#loginPhoto {
+  width: auto;
 }
 .footer {
   position: absolute;

@@ -1,26 +1,45 @@
-<% include ./partials/header %>
-<div class="row justify-content-center">
-  <div class="col-md-12">
-    <form class="form-signin" action="/login" method="POST">
-      <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
-      <label for="inputUsername" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="inputUsername"
-        class="form-control"
-        name="username"
-        placeholder="Username"
-        required
-        autofocus
-      />
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-    <div class="form-signin">
-      <a href="/rooms">Go Back</a>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roomly</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-lg py-0 fixed-top">
+      <a href="/" class="navbar-brand"><img src="/images/roomly-logo-01.svg" alt=""/></a>
+    </nav>
 
-<% include ./partials/footer %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="d-none d-md-block col-md-6" id="loginPhoto">
+        </div>
+        <div class="col-md-6 form text-center">
+          <form class="form-signin" action="/login" method="POST">
+            <h1 class="h3 mb-2 font-weight-bold">Welcome to Roomly</h1>
+            <p>Please sign in to continue</p>
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required autofocus/>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+          <a class="text-link" href="#">Forgot password?</a>
+          <hr class="hr-text" data-content="OR">
+          <div class="other">
+            <button type="button" class="btn btn-outline-secondary"><i><img src="https://img.icons8.com/color/28/000000/facebook.png"></i> Facebook</button>
+            <button type="button" class="btn btn-outline-secondary"><i><img src="https://img.icons8.com/color/28/000000/google-logo.png"></i> Google</button>
+          </div>
+          <a class="text-link" href="/rooms"><i><img src="https://img.icons8.com/color/28/000000/back.png"></i>Go Back</a>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
