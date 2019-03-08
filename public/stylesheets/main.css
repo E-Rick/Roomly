@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Anodina;
+  src: url(/public/fonts/Anodina/Anodina-Bold.otf);
+}
+
 html {
   position: relative;
   min-height: 100%;
