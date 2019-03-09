@@ -60,7 +60,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.btn-thumbnail {
+.btn-card {
   background-color: #f7a8ab;
   border-color: #f7a8ab;
   color: white;
@@ -68,9 +68,14 @@ body {
   padding: 0px 50px;
 }
 
-.btn-thumbnail:hover {
+.btn-card:hover {
   background-color: #ce5257;
   color: white;
+}
+
+.room-type {
+  /* color: #b8aeb2; */
+  color: rgb(118, 118, 118);
 }
 
 .form-signin {
@@ -113,12 +118,16 @@ body {
   user-select: none;
 }
 
+.checked {
+  color: orange;
+}
+
+.footer {
+  background-color: #f6e4e6;
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
-}
-
-.checked {
-  color: orange;
 }
