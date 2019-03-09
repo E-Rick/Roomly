@@ -11,8 +11,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-      <a class="navbar-brand" href="/"><img src="/images/roomly-logo-pin-01.svg" width="40" height="40" class="d-inline-block align-top" alt=""></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent mb-3">
+      <a class="navbar-brand p-0" href="/"><img src="/images/roomly-text.svg" width="150" height="60" class="d-inline-block align-top" alt=""></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -27,7 +27,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
-          <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Discover</a>
+          <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Home</a>
         </div>
         <div class="navbar-nav navbar-right">
           <a href="/rooms/new" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
