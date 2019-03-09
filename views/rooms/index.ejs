@@ -1,8 +1,8 @@
 <% include ../partials/header %>
 
-<header class="jumbotron">
+<header class="jumbotron bg-transparent">
   <h1 class="text-center">Welcome to Roomly</h1>
-  <p class="text-center">View our hand-picked rooms from all over the world</p>
+  <p class="text-center">Find the perfect place to spend your next vacation</p>
 </header>
 
 <div class="row text-center">
@@ -21,7 +21,7 @@
         <span class="fa fa-star <% if (room.rating > 3.5) { %> checked <% } %>"></span>
         <span class="fa fa-star <% if (room.rating > 4.5) { %> checked <% } %>"></span>
         <% } %>
-        <p class="mt-3"><a href="/rooms/<%= room._id %>" class="btn btn-primary">More Info</a></p>
+        <p class="mt-3"><a href="/rooms/<%= room._id %>" class="btn btn-thumbnail btn-primary">More Info</a></p>
       </div>
     </div>
   </div>

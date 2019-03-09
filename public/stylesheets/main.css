@@ -1,11 +1,11 @@
 @font-face {
-  font-family: Anodina;
-  src: url(/public/fonts/Anodina/Anodina-Regular.otf);
+  font-family: anodina;
+  src: url(/fonts/Anodina/Anodina-Regular.otf);
 }
 
 @font-face {
-  font-family: Anodina;
-  src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
+  font-family: anodina;
+  src: url(/fonts/Anodina/Anodina-Bold.otf);
   font-weight: bold;
 }
 
@@ -15,13 +15,21 @@ html {
 }
 
 body {
+  font-family: anodina;
   height: 100%;
   margin-bottom: 60px;
 }
 
-#loginPhoto {
-  width: auto;
+.nav-link {
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
 }
+
+.nav-link:hover,
+.active {
+  border-bottom: 3px solid #b8aeb2;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -50,6 +58,19 @@ body {
   background-size: contain;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+}
+
+.btn-thumbnail {
+  background-color: #f7a8ab;
+  border-color: #f7a8ab;
+  color: white;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
+.btn-thumbnail:hover {
+  background-color: #ce5257;
+  color: white;
 }
 
 .form-signin {
