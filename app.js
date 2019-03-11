@@ -16,7 +16,7 @@ const commentRoutes = require('./routes/comments'),
   reviewRoutes = require('./routes/reviews'),
   indexRoutes = require('./routes/index');
 
-mongoose.connect('mongodb+srv://wrecs:<Lybb2019>@cluster0-drtpc.mongodb.net/roomly?retryWrites=true', {
+mongoose.connect('mongodb+srv://wrecs:Lybb2019@cluster0-drtpc.mongodb.net/roomly?retryWrites=true', {
   useNewUrlParser: true,
   useFindAndModify: false
 });
