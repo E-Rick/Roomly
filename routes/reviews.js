@@ -33,20 +33,24 @@ router.get('/', (req, res) => {
 // CREATE - Add new review to database
 router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, async (req, res) => {
   const room = await Room.findById(req.params.id)
-      .populate('reviews')
-      .exec(),
-    review = await Review.create(req.body.review);
-  if (!review.rating) req.flash('error', 'Please fill out the rating');
-  // add author username/id and associated room to the review
-  review.author.id = req.user._id;
-  review.author.username = req.user.username;
-  review.room = room;
-  review.save();
-  room.reviews.push(review);
-  room.rating = calculateAverage(room.reviews); // calculate the new average review for the room
-  room.save();
-  req.flash('success', 'Your review has been successfully added.');
-  return res.redirect(`/rooms/${room._id}`);
+    .populate('reviews')
+    .exec();
+  try {
+    const review = await Review.create(req.body.review);
+    // add author username/id and associated room to the review
+    review.author.id = req.user._id;
+    review.author.username = req.user.username;
+    review.room = room;
+    review.save();
+    room.reviews.push(review);
+    room.rating = calculateAverage(room.reviews); // calculate the new average review for the room
+    room.save();
+    req.flash('success', 'Your review has been successfully added.');
+    return res.redirect(`/rooms/${room._id}`);
+  } catch (e) {
+    req.flash('error', 'Please fill out the rating');
+    res.redirect('back');
+  }
 });
 
 // NEW - Show form to create new review
