@@ -8,7 +8,7 @@
       <div class="card-body">
         <p class="float-right">$<%= room.price %>/night</p>
         <h5 class="card-title"><strong><%= room.name %></strong></h5>
-        <p><em>Submitted By <%= room.author.username %></em></p>
+        <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
         <hr />
         <p class="card-text"><%= room.description %></p>
         <hr>
