@@ -1,4 +1,6 @@
 /* eslint-disable comma-dangle */
+require('dotenv').config();
+
 const express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
@@ -16,21 +18,22 @@ const commentRoutes = require('./routes/comments'),
   reviewRoutes = require('./routes/reviews'),
   indexRoutes = require('./routes/index');
 
-mongoose.connect('mongodb://localhost:27017/room_genie', {
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useFindAndModify: false
 });
+
 app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
 app.use(flash());
-seedDB(); // Seed the database
+// seedDB(); // Seed the database
 
 // PASSPORT CONFIGURATION
 app.use(
   require('express-session')({
-    secret: 'Molly wins cutest dog!',
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false
   })
@@ -60,6 +63,6 @@ app.use((req, res) => {
   res.redirect('/');
 });
 
-app.listen(3000, () => {
-  console.log('RoomGenie server has started');
+app.listen(process.env.PORT, () => {
+  console.log('Roomly server has started');
 });
