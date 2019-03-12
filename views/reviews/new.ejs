@@ -8,8 +8,8 @@
     <form action="/rooms/<%= room._id %>/reviews" method="POST">
       <div class="form-group">
         <div class="rating d-flex justify-content-center">
-          <input type="hidden" id="rating" name="review[rating]" value="1" required>
-          <span  onmouseover="starmark(this)" onclick="starmark(this)" id="1one"  class="rating-stars fas fa-star checked"></span>
+          <input type="hidden" id="rating" name="review[rating]" value="" required>
+          <span  onmouseover="starmark(this)" onclick="starmark(this)" id="1one"  class="rating-stars fas fa-star"></span>
           <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one" class="rating-stars fas fa-star "></span>
           <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one" class="rating-stars fas fa-star "></span>
           <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one" class="rating-stars fas fa-star"></span>
