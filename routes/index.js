@@ -44,7 +44,7 @@ router.post(
     successRedirect: '/rooms',
     failureRedirect: '/login',
     failureFlash: true,
-    successFlash: 'Welcome back to RoomGenie!'
+    successFlash: 'Welcome back to Roomly!'
   })
 );
 
