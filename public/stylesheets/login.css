@@ -29,6 +29,10 @@ h1 {
   color: #2c2928;
 }
 
+input {
+  margin-bottom: 1rem;
+}
+
 .alert {
   margin-top: 1rem;
 }
