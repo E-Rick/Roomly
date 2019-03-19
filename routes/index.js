@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-const express = require('express'),
+const router = require('express').Router(),
   passport = require('passport'),
   User = require('../models/user'),
-  Room = require('../models/room'),
-  router = express.Router();
+  Room = require('../models/room');
 
 // Root route
 router.get('/', (req, res) => {
