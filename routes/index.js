@@ -2,6 +2,8 @@
 const router = require('express').Router(),
   passport = require('passport'),
   User = require('../models/user'),
+  { asyncErrorHandler, isLoggedIn } = require('../middleware'),
+  { postRegister, postLogin, getLogout, getProfile } = require('../controllers'),
   Room = require('../models/room');
 
 // Root route
@@ -15,21 +17,7 @@ router.get('/register', (req, res) => {
 });
 
 // Handle signup logic route
-router.post('/register', (req, res) => {
-  const newUser = new User({
-    username: req.body.username,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    avatar: req.body.avatar
-  });
-  User.register(newUser, req.body.password, (err, user) => {
-    if (err) return res.render('register', { error: err.message });
-    passport.authenticate('local');
-    req.flash('success', `Successfully signed Up ${user.username}!`);
-    return res.redirect('/rooms');
-  });
-});
+router.post('/register', asyncErrorHandler(postRegister));
 
 // show login form
 router.get('/login', (req, res) => {
@@ -37,24 +25,14 @@ router.get('/login', (req, res) => {
 });
 
 // handling login logic route
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/rooms',
-    failureRedirect: '/login',
-    failureFlash: true,
-    successFlash: 'Welcome back to Roomly!'
-  })
-);
+router.post('/login', postLogin);
 
 // logout route
-router.get('/logout', (req, res) => {
-  req.logout();
-  req.flash('success', 'Successfully logged you out.');
-  res.redirect('/rooms');
-});
+router.get('/logout', getLogout);
 
 // User profiles
+router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
+
 router.get('/users/:id', (req, res) => {
   User.findById(req.params.id, (err, foundUser) => {
     if (err) {

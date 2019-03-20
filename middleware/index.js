@@ -7,6 +7,10 @@ const Room = require('../models/room'),
 
 const middlewareObj = {};
 
+middlewareObj.asyncErrorHandler = fn => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+
 middlewareObj.checkRoomOwnership = (req, res, next) => {
   // is user logged in?
   if (req.isAuthenticated()) {
