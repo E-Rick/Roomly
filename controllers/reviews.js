@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 const Room = require('../models/room'),
@@ -13,7 +14,7 @@ function calculateAverage(reviews) {
 }
 
 module.exports = {
-  async getReviews(req, res, next) {
+  async reviewIndex(req, res, next) {
     await Room.findById(req.params.id)
       .populate({
         path: 'reviews',
@@ -28,7 +29,11 @@ module.exports = {
       });
   },
 
-  async postReview(req, res, next) {
+  reviewNew(req, res, next) {
+    res.render('reviews/new', { room: req.room });
+  },
+
+  async reviewCreate(req, res, next) {
     const room = await Room.findById(req.params.id)
       .populate('reviews')
       .exec();
@@ -48,6 +53,22 @@ module.exports = {
       req.flash('error', 'Please fill out the rating');
       res.redirect('back');
     }
+  },
+
+  reviewEdit(req, res, next) {
+    res.render('reviews/edit', { room: req.room, review: req.review });
+  },
+
+  async reviewUpdate(req, res, next) {
+    await Review.findByIdAndUpdate(req.params.review_id, req.body.review, { new: true });
+    const room = await Room.findById(req.params.id)
+      .populate('reviews')
+      .exec();
+    // recalculate room average
+    room.rating = calculateAverage(room.reviews);
+    room.save();
+    req.flash('success', 'Your review was successfully edited.');
+    res.redirect(`/rooms/${room._id}`);
   },
 
   async deleteReview(req, res, next) {
