@@ -42,5 +42,14 @@ module.exports = {
       .limit(5)
       .exec();
     res.render('users/show', { user: req.user, rooms });
+  },
+
+  async getUser(req, res, next) {
+    const user = await User.findById(req.params.id),
+      rooms = await Room.find()
+        .where('author.id')
+        .equals(user._id)
+        .exec();
+    res.render('users/show', { user, rooms });
   }
 };
