@@ -1,9 +1,10 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 const express = require('express'),
   router = express.Router({ mergeParams: true }),
   Room = require('../models/room'),
   Review = require('../models/review'),
-  middleware = require('../middleware');
+  { isLoggedIn, checkReviewExistence, checkReviewOwnership, checkRoom } = require('../middleware');
 
 // Calculate review average
 function calculateAverage(reviews) {
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
 });
 
 // CREATE - Add new review to database
-router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, async (req, res) => {
+router.post('/', isLoggedIn, checkReviewExistence, async (req, res) => {
   const room = await Room.findById(req.params.id)
     .populate('reviews')
     .exec();
@@ -54,17 +55,17 @@ router.post('/', middleware.isLoggedIn, middleware.checkReviewExistence, async (
 });
 
 // NEW - Show form to create new review
-router.get('/new', middleware.isLoggedIn, middleware.checkReviewExistence, middleware.checkRoom, (req, res) => {
+router.get('/new', isLoggedIn, checkReviewExistence, checkRoom, (req, res) => {
   res.render('reviews/new', { room: req.room });
 });
 
 // Reviews Edit
-router.get('/:review_id/edit', middleware.checkRoom, middleware.checkReviewOwnership, async (req, res) => {
+router.get('/:review_id/edit', checkRoom, checkReviewOwnership, async (req, res) => {
   res.render('reviews/edit', { room: req.room, review: req.review });
 });
 
 // Reviews Update
-router.put('/:review_id', middleware.checkReviewOwnership, async (req, res) => {
+router.put('/:review_id', checkReviewOwnership, async (req, res) => {
   await Review.findByIdAndUpdate(req.params.review_id, req.body.review, { new: true });
   const room = await Room.findById(req.params.id)
     .populate('reviews')
@@ -77,7 +78,7 @@ router.put('/:review_id', middleware.checkReviewOwnership, async (req, res) => {
 });
 
 // Reviews Delete
-router.delete('/:review_id', middleware.checkReviewOwnership, async (req, res) => {
+router.delete('/:review_id', checkReviewOwnership, async (req, res) => {
   await Review.findByIdAndRemove(req.params.review_id);
   const room = await Room.findByIdAndUpdate(req.params.id, { $pull: { reviews: req.params.review_id } }, { new: true })
     .populate('reviews')

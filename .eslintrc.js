@@ -18,6 +18,13 @@ module.exports = {
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
     'arrow-parens': ['error', 'as-needed'],
     'max-len': ['error', { code: 125 }],
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }]
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'object-curly-newline': [
+      'error',
+      {
+        ImportDeclaration: 'never',
+        ExportDeclaration: { multiline: true, minProperties: 3 }
+      }
+    ]
   }
 };

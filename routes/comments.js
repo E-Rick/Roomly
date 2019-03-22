@@ -1,15 +1,15 @@
 const express = require('express'),
   Comment = require('../models/comment.js'),
-  middleware = require('../middleware'),
+  { isLoggedIn, checkRoom, checkCommentOwnership } = require('../middleware'),
   router = express.Router({ mergeParams: true });
 
 // Comments - New
-router.get('/new', middleware.checkRoom, (req, res) => {
+router.get('/new', checkRoom, (req, res) => {
   res.render('comments/new', { room: req.room });
 });
 
 // Comments - Create
-router.post('/', middleware.checkRoom, middleware.isLoggedIn, async (req, res) => {
+router.post('/', checkRoom, isLoggedIn, async (req, res) => {
   // lookup room using ID
   const comment = await Comment.create(req.body.comment);
   // add username and id to comment
@@ -23,19 +23,19 @@ router.post('/', middleware.checkRoom, middleware.isLoggedIn, async (req, res) =
 });
 
 // Comments - Edit
-router.get('/:comment_id/edit', middleware.checkRoom, middleware.checkCommentOwnership, async (req, res) => {
+router.get('/:comment_id/edit', checkRoom, checkCommentOwnership, async (req, res) => {
   const comment = await Comment.findById(req.params.comment_id);
   res.render('comments/edit', { room_id: req.params.id, comment });
 });
 
 // Comments - Update
-router.put('/:comment_id', middleware.checkCommentOwnership, async (req, res) => {
+router.put('/:comment_id', checkCommentOwnership, async (req, res) => {
   await Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment);
   res.redirect(`/rooms/${req.params.id}`);
 });
 
 // Comments - Delete
-router.delete('/:comment_id', middleware.checkCommentOwnership, async (req, res) => {
+router.delete('/:comment_id', checkCommentOwnership, async (req, res) => {
   try {
     await Comment.findByIdAndDelete(req.params.comment_id);
     req.flash('success', 'Comment deleted');

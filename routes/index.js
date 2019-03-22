@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const router = require('express').Router(),
-  passport = require('passport'),
   User = require('../models/user'),
   { asyncErrorHandler, isLoggedIn } = require('../middleware'),
   { postRegister, postLogin, getLogout, getProfile } = require('../controllers'),

@@ -1,5 +1,5 @@
-const router = require('express').Router(),
-  passport = require('passport'),
+/* eslint-disable no-unused-vars */
+const passport = require('passport'),
   User = require('../models/user'),
   Room = require('../models/room');
 

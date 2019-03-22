@@ -3,7 +3,7 @@ const express = require('express'),
   router = express.Router(),
   Room = require('../models/room'),
   Comment = require('../models/comment'),
-  middleWare = require('../middleware'),
+  { isLoggedIn, checkRoomOwnership } = require('../middleware'),
   Review = require('../models/review');
 
 // INDEX - Show all rooms
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 // CREATE - Add new room to database
-router.post('/', middleWare.isLoggedIn, async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
   // directly attach author to existing req.body.room obj (retrieved from post form data after body-parser processes)
   req.body.room.author = {
     id: req.user._id,
@@ -27,7 +27,7 @@ router.post('/', middleWare.isLoggedIn, async (req, res) => {
 });
 
 // NEW - Show form to create new room
-router.get('/new', middleWare.isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('rooms/new', { page: 'new' });
 });
 
@@ -51,12 +51,12 @@ router.get('/:id', (req, res) => {
 });
 
 // EDIT - Show form to edit room
-router.get('/:id/edit', middleWare.checkRoomOwnership, (req, res) => {
+router.get('/:id/edit', checkRoomOwnership, (req, res) => {
   res.render('rooms/edit', { room: req.room });
 });
 
 // UPDATE - Update route to update room
-router.put('/:id', middleWare.checkRoomOwnership, async (req, res) => {
+router.put('/:id', checkRoomOwnership, async (req, res) => {
   // security measure to protect against rating maniputlation
   delete req.body.room.rating;
   await Room.findByIdAndUpdate(req.params.id, req.body.room);
@@ -65,7 +65,7 @@ router.put('/:id', middleWare.checkRoomOwnership, async (req, res) => {
 
 // DESTROY - Delete Room route
 // deletes all reviews & comments associated with the room
-router.delete('/:id', middleWare.checkRoomOwnership, async (req, res) => {
+router.delete('/:id', checkRoomOwnership, async (req, res) => {
   await Comment.deleteMany({ _id: { $in: req.room.comments } });
   await Review.deleteMany({ _id: { $in: req.room.reviews } });
   req.room.remove(); // delete the room
