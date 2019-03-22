@@ -2,7 +2,7 @@
 const router = require('express').Router(),
   User = require('../models/user'),
   { asyncErrorHandler, isLoggedIn } = require('../middleware'),
-  { postRegister, postLogin, getLogout, getProfile } = require('../controllers'),
+  { postRegister, postLogin, getLogout, getProfile, getUser } = require('../controllers'),
   Room = require('../models/room');
 
 // Root route
@@ -32,23 +32,6 @@ router.get('/logout', getLogout);
 // User profiles
 router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
 
-router.get('/users/:id', (req, res) => {
-  User.findById(req.params.id, (err, foundUser) => {
-    if (err) {
-      req.flash('error', 'user not found');
-      res.redirect('/rooms');
-    }
-    Room.find()
-      .where('author.id')
-      .equals(foundUser._id)
-      .exec((error, rooms) => {
-        if (error) {
-          req.flash('error', 'user not found');
-          res.redirect('/rooms');
-        }
-        res.render('users/show', { user: foundUser, rooms });
-      });
-  });
-});
+router.get('/users/:id', asyncErrorHandler(getUser));
 
 module.exports = router;
