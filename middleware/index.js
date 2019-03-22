@@ -10,7 +10,7 @@ module.exports = {
     Promise.resolve(fn(req, res, next)).catch(next);
   },
 
-  checkRoomOwnership: (req, res, next) => {
+  checkRoomOwnership(req, res, next) {
     // is user logged in?
     if (req.isAuthenticated()) {
       Room.findById(req.params.id, (err, foundRoom) => {
