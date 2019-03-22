@@ -7,7 +7,7 @@ const mongoose = require('mongoose'),
 const roomSchema = new mongoose.Schema({
   name: String,
   price: Number,
-  image: String,
+  images: [{ url: String, public_id: String }],
   description: String,
   author: {
     id: {

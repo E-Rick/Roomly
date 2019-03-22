@@ -1,7 +1,16 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
-const Room = require('../models/room'),
+const cloudinary = require('cloudinary'),
+  Room = require('../models/room'),
   Comment = require('../models/comment'),
   Review = require('../models/review');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET
+});
 
 module.exports = {
   async roomIndex(req, res, next) {
@@ -15,6 +24,14 @@ module.exports = {
       id: req.user._id,
       username: req.user.username
     };
+    req.body.room.images = [];
+    for (const file of req.files) {
+      const image = await cloudinary.v2.uploader.upload(file.path);
+      req.body.room.images.push({
+        url: image.secure_url,
+        public_id: image.public_id
+      });
+    }
     const room = await Room.create(req.body.room);
     req.flash('success', 'Successfully created listing!');
     res.redirect(`/rooms/${room._id}`);
@@ -45,6 +62,46 @@ module.exports = {
 
   roomEdit(req, res, next) {
     res.render('rooms/edit', { room: req.room });
+  },
+
+  async roomUpdate(req, res, next) {
+    // security measure to protect against rating maniputlation
+    delete req.body.room.rating;
+    const room = await Room.findById(req.params.id);
+    //  check if there's any images for deletion
+    if (req.body.deleteImages && req.body.deleteImages.length) {
+      //  loop over deleteImages
+      for (const public_id of req.body.deleteImages) {
+        //  delete images from cloudinary
+        await cloudinary.v2.uploader.destroy(public_id);
+        //  delete image from room.images
+        for (const image of room.images) {
+          if (image.public_id === public_id) {
+            const index = room.images.indexOf(image);
+            room.images.splice(index, 1);
+          }
+        }
+      }
+    }
+    //  check if there are any new images for upload
+    if (req.files) {
+      //  upload images
+      for (const file of req.files) {
+        const image = await cloudinary.v2.uploader.upload(file.path);
+        //  add images to room.images array
+        room.images.push({
+          url: image.secure_url,
+          public_id: image.public_id
+        });
+      }
+    }
+    // update the room with any new properties
+    room.name = req.body.room.name;
+    room.description = req.body.room.description;
+    room.price = req.body.room.price;
+    //  save the updated room into the db
+    room.save();
+    res.redirect(`/rooms/${req.params.id}`); // redirect (show page)
   },
 
   async roomDestroy(req, res, next) {

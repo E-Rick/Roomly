@@ -4,7 +4,7 @@
   <div class="col-md-9">
     <%# Show room card %>
     <div class="card mb-3">
-      <img src="<%= room.image %>" class="card-img-top show-images" alt="<%= room.name %>" />
+      <img src="<%= room.images[0].url %>" class="card-img-top show-images" alt="<%= room.name %>" />
       <div class="card-body">
         <p class="float-right">$<%= room.price %>/night</p>
         <h5 class="card-title"><strong><%= room.name %></strong></h5>
@@ -22,7 +22,11 @@
         <% } %>
       </div>
     </div>
-
+    <div>
+      <% room.images.forEach(function(image) { %>
+      <img src="<%= image.url %>" alt="Room image" width="200px"/>
+      <% }); %>
+    </div>
     <div class="card">
       <div class="card-body">
         <% if (room.rating === 0) { %>
