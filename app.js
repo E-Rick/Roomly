@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
+  cookieParser = require('cookie-parser'),
   mongoose = require('mongoose'),
   flash = require('connect-flash'),
   passport = require('passport'),
@@ -28,6 +29,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
 app.use(flash());
+app.use(cookieParser());
 // seedDB(); // Seed the database
 
 // PASSPORT CONFIGURATION
