@@ -9,6 +9,14 @@
   font-weight: bold;
 }
 
+$primary-dark: #c12026;
+$primary: #cf5257;
+$primary-light: #f7a8ab;
+$secondary: #64b5f6;
+$secondary-light: #9be7ff;
+$grey: #767676;
+$black: #2c2928;
+
 html {
   position: relative;
   min-height: 100%;
@@ -27,7 +35,7 @@ body {
 
 .nav-link:hover,
 .active {
-  border-bottom: 3px solid #b8aeb2;
+  border-bottom: 3px solid $grey;
 }
 
 .footer {
@@ -45,6 +53,44 @@ body {
 .rating-stars {
   font-size: 40px;
   cursor: pointer;
+}
+
+.inner {
+  overflow: hidden;
+  z-index: 2;
+}
+
+.inner .far {
+  color: white;
+  position: absolute;
+  top: 5%;
+  right: 6%;
+  z-index: 4;
+}
+
+.inner .fas {
+  color: $grey;
+  opacity: 0.6;
+  position: absolute;
+  top: 5%;
+  right: 6%;
+  z-index: 3;
+}
+
+.inner .under {
+  color: $grey;
+  opacity: 30%;
+  position: absolute;
+  top: 5%;
+  right: 6%;
+}
+
+.inner img {
+  transition: all 1.5s ease;
+}
+
+.inner:hover img {
+  transform: scale(1.5);
 }
 
 .thumbnails {
@@ -73,9 +119,14 @@ body {
   color: white;
 }
 
+.price {
+  color: $black;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .room-type {
-  /* color: #b8aeb2; */
-  color: rgb(118, 118, 118);
+  color: $grey;
 }
 
 .form-signin {
@@ -119,7 +170,7 @@ body {
 }
 
 .checked {
-  color: orange;
+  color: $secondary;
 }
 
 .footer {

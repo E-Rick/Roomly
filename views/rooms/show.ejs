@@ -4,7 +4,7 @@
   <div class="col-md-9">
     <%# Show room card %>
     <div class="card mb-3">
-      <img src="<%= room.images[0].url %>" class="card-img-top show-images" alt="<%= room.name %>" />
+      <img src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top show-images" alt="<%= room.name %>" />
       <div class="card-body">
         <p class="float-right">$<%= room.price %>/night</p>
         <h5 class="card-title"><strong><%= room.name %></strong></h5>
