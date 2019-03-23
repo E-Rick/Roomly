@@ -4,31 +4,80 @@
   <h1 class="text-center">Welcome to Roomly</h1>
   <p class="text-center">Find the perfect place to spend your next vacation</p>
 </header>
-
-<div class="row text-center">
-  <% rooms.forEach(function(room){ %>
-  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-    <div class="card shadow">
-      <div class="inner">
-        <img src="<%= room.image %>" class="card-img-top thumbnails" alt="<%= room.name %>" />
-      </div>
-      <div class="card-body pt-2">
-        <p class="room-type mb-0">Entire Apartment · 1 bed</p>
-        <h5 class="card-title"><%= room.name %></h5>
-        <% if (room.rating === 0) { %>
-        <p><em>No reviews yet.</em></p>
-        <% } else { %>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star <% if (room.rating > 1.5) { %> checked <% } %>"></span>
-        <span class="fa fa-star <% if (room.rating > 2.5) { %> checked <% } %>"></span>
-        <span class="fa fa-star <% if (room.rating > 3.5) { %> checked <% } %>"></span>
-        <span class="fa fa-star <% if (room.rating > 4.5) { %> checked <% } %>"></span>
-        <% } %>
-        <p class="mt-3"><a href="/rooms/<%= room._id %>" class="btn btn-card btn-primary">More Info</a></p>
+<section id="latest">
+  <h3>Recently Added</h3>
+  <div class="row text-left">
+    <% rooms.forEach(function(room){ %>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card border-0">
+        <div class="inner">
+          <img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
+          <i class="far fa-heart fa-2x"></i>
+          <div class="heart"></div>
+          <i class="fas fa-heart fa-2x"></i>
+        </div>
+        <div class="card-body p-0 pt-2">
+          <p class="room-type mb-0">Entire Apartment · 1 bed</p>
+          <h5 class="card-title mb-1"><%= room.name %></h5>
+          <p class="mb-0"><span class="price">$<%= room.price %></span><span class="room-type">/ Night</span></p>
+          <% if (room.rating === 0) { %>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <% } else { %>
+          <span class="fa fa-star fa-1x checked"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 1.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 2.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 3.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 4.5) { %> checked <% } %>"></span>
+          <% } %>
+          <span>( <%= room.reviews.length %> )</span>
+          <a href="/rooms/<%= room._id %>" class="stretched-link"></a>
+        </div>
       </div>
     </div>
+    <% });%>
   </div>
-  <% });%>
-</div>
+</section>
+
+<section id="latest">
+  <h3>Top Rated</h3>
+  <div class="row text-left">
+    <% rooms.forEach(function(room){ %>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card border-0">
+        <div class="inner">
+           <a href="/rooms/<%= room._id %>"><img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" /></a>
+          <i class="far fa-heart fa-2x"></i>
+          <div class="heart"></div>
+          <i class="fas fa-heart fa-2x"></i>
+        </div>
+        <div class="card-body p-0 pt-2">
+          <p class="room-type mb-0">Entire Apartment · 1 bed</p>
+          <h5 class="card-title mb-1"><%= room.name %></h5>
+          <p class="mb-0"><span class="price">$<%= room.price %></span><span class="room-type">/ Night</span></p>
+          <% if (room.rating === 0) { %>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <span class="fa fa-star fa-1x"></span>
+          <% } else { %>
+          <span class="fa fa-star fa-1x checked"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 1.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 2.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 3.5) { %> checked <% } %>"></span>
+          <span class="fa fa-star fa-1x <% if (room.rating > 4.5) { %> checked <% } %>"></span>
+          <% } %>
+          <span>( <%= room.reviews.length %> )</span>
+          <a href="/rooms/<%= room._id %>" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+    <% });%>
+  </div>
+</section>
 
 <% include ../partials/footer %>
