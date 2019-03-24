@@ -23,7 +23,7 @@ body {
 }
 
 #map {
-  width: 350px;
+  width: 100%;
   height: 200px;
 }
 
@@ -149,6 +149,10 @@ body {
 
 .room-type {
   color: #767676;
+}
+
+#newReview {
+  background-color: #2286c3;
 }
 
 .form-signin {
