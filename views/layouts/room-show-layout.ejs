@@ -10,64 +10,15 @@
     <link rel="stylesheet" href="/fonts/Anodina">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
-
-    
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent mb-3">
-      <a class="navbar-brand p-0" href="/"><img src="/images/roomly-text.svg" width="150" height="60" class="d-inline-block align-top" alt=""></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto">
-          <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Home</a>
-        </div>
-        <div class="navbar-nav navbar-right">
-          <a href="/rooms/new" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
-          <% if(!currentUser){ %>
-            <a href="/login" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">Login</a>
-            <a href="/register" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">Register</a>
-          <% } else { %>
-            <a class="nav-link nav-item" href="/profile">Signed In As <%= currentUser.username %></a>
-            <a href="/logout" class="nav-link nav-item">Logout</a>
-          <% } %>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
-      <% if(error && error.length > 0){ %>
-        <div class="alert alert-danger" role="alert">
-         <%= error %>
-        </div>
-      <% } %> <% if(success && success.length > 0){ %>
-        <div class="alert alert-success" role="alert">
-          <%= success %>
-        </div>
-      <% } %>
-    </div>
-
+    <% include ../partials/navbar %>
     <div class="container">
     <!--Import body -->
     <%- body -%>
-
     </div><!-- /.container -->
-    <footer class="footer">
-      <div class="container">
-        <p class="text-center text-muted">Trademark Roomly 2019</p>
-      </div>
-    </footer>
+    <% include ../partials/footer %>
     <!-- Bootstrap and its dependencies -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
