@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */

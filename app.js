@@ -21,7 +21,8 @@ const commentRoutes = require('./routes/comments'),
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useCreateIndex: true
 });
 
 app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
