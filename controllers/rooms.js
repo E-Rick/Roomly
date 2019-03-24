@@ -2,6 +2,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
 const cloudinary = require('cloudinary'),
+  mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
+  mapBoxToken = process.env.MAPBOX_TOKEN,
+  geocodingClient = mbxGeocoding({ accessToken: mapBoxToken }),
   Room = require('../models/room'),
   Comment = require('../models/comment'),
   Review = require('../models/review');
@@ -19,7 +22,7 @@ module.exports = {
   },
 
   async roomCreate(req, res, next) {
-    // directly attach author to existing req.body.room obj (retrieved from post form data after body-parser processes)
+    // directly attach author to existing req.body.room obj (retrieved from room form data after body-parser processes)
     req.body.room.author = {
       id: req.user._id,
       username: req.user.username
@@ -32,6 +35,13 @@ module.exports = {
         public_id: image.public_id
       });
     }
+    const response = await geocodingClient
+      .forwardGeocode({
+        query: req.body.room.location,
+        limit: 1
+      })
+      .send();
+    req.body.room.geometry = response.body.features[0].geometry;
     const room = await Room.create(req.body.room);
     req.flash('success', 'Successfully created listing!');
     res.redirect(`/rooms/${room._id}`);
@@ -53,7 +63,7 @@ module.exports = {
       // Check if valid room id length links to a room
       // eslint-disable-next-line no-throw-literal
       if (!room) throw 'Error';
-      res.render('rooms/show', { room });
+      res.render('rooms/show', { room, mapBoxToken });
     } catch (err) {
       req.flash('error', 'Sorry, No room listing with that ID not found.');
       res.redirect('/rooms');
@@ -95,6 +105,17 @@ module.exports = {
         });
       }
     }
+    // check if location was updated
+    if (req.body.room.location !== room.location) {
+      const response = await geocodingClient
+        .forwardGeocode({
+          query: req.body.room.location,
+          limit: 1
+        })
+        .send();
+      room.geometry = response.body.features[0].geometry;
+      room.location = req.body.room.location;
+    }
     // update the room with any new properties
     room.name = req.body.room.name;
     room.description = req.body.room.description;
@@ -105,6 +126,9 @@ module.exports = {
   },
 
   async roomDestroy(req, res, next) {
+    for (const image of req.room.images) {
+      await cloudinary.v2.uploader.destroy(image.public_id);
+    }
     await Comment.deleteMany({ _id: { $in: req.room.comments } });
     await Review.deleteMany({ _id: { $in: req.room.reviews } });
     req.room.remove(); // delete the room

@@ -5,10 +5,15 @@ const UserSchema = new mongoose.Schema(
   {
     username: String,
     password: String,
-    avatar: String,
+    avatar: {
+      secure_url: { type: String, default: '/images/placeholder.jpg' },
+      public_id: String
+    },
     firstName: String,
     lastName: String,
-    email: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+    email: { type: String, unique: true, required: true },
     isAdmin: { type: Boolean, default: false }
   },
   {

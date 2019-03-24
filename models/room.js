@@ -9,6 +9,21 @@ const roomSchema = new mongoose.Schema({
   price: Number,
   images: [{ url: String, public_id: String }],
   description: String,
+  location: String,
+  geometry: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  },
+  properties: {
+    description: String
+  },
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,

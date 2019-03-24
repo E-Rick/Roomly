@@ -1,9 +1,13 @@
+/* eslint-disable space-before-function-paren */
+/* eslint-disable func-names */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable no-var */
 // find room edit form
-const roomEditForm = document.getElementById('roomEditForm');
+var roomEditForm = document.getElementById('roomEditForm');
 // add submit listener to room edit form
-roomEditForm.addEventListener('submit', event => {
+roomEditForm.addEventListener('submit', function(event) {
   // find length of uploaded images
-  const imageUploads = document.getElementById('imageUpload').files.length,
+  var imageUploads = document.getElementById('imageUpload').files.length,
     // find total number of existing images
     existingImgs = document.querySelectorAll('.imageDeleteCheckbox').length,
     // find total number of potential deletions

@@ -17,7 +17,32 @@ html {
 body {
   font-family: anodina;
   height: 100%;
+  margin: 0;
   margin-bottom: 60px;
+  padding: 0;
+}
+
+#map {
+  width: 350px;
+  height: 200px;
+}
+
+.marker {
+  background-image: url("/images/mapbox-icon.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .nav-link {
