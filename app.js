@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 const express = require('express'),
+  engine = require('ejs-mate'),
   app = express(),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
@@ -24,6 +25,8 @@ mongoose.connect(process.env.DATABASE_URL, {
   useCreateIndex: true
 });
 
+// use ejs-locals for all ejs templates
+app.engine('ejs', engine);
 app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
