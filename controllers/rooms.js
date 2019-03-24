@@ -7,7 +7,6 @@ const cloudinary = require('cloudinary'),
   mapBoxToken = process.env.MAPBOX_TOKEN,
   geocodingClient = mbxGeocoding({ accessToken: mapBoxToken }),
   Room = require('../models/room'),
-  Comment = require('../models/comment'),
   Review = require('../models/review');
 
 cloudinary.config({
@@ -55,7 +54,6 @@ module.exports = {
   async roomShow(req, res, next) {
     try {
       const room = await Room.findById(req.params.id)
-        .populate('comments')
         .populate({
           path: 'reviews',
           options: { sort: { createdAt: -1 } }
@@ -130,7 +128,6 @@ module.exports = {
     for (const image of req.room.images) {
       await cloudinary.v2.uploader.destroy(image.public_id);
     }
-    await Comment.deleteMany({ _id: { $in: req.room.comments } });
     await Review.deleteMany({ _id: { $in: req.room.reviews } });
     req.room.remove(); // delete the room
     req.flash('success', `Listing "${req.room.name}" deleted successfully!`);

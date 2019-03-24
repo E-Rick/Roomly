@@ -14,8 +14,7 @@ const express = require('express'),
   seedDB = require('./seeds');
 
 // Requiring routes
-const commentRoutes = require('./routes/comments'),
-  roomRoutes = require('./routes/rooms'),
+const roomRoutes = require('./routes/rooms'),
   reviewRoutes = require('./routes/reviews'),
   indexRoutes = require('./routes/index');
 
@@ -61,7 +60,6 @@ app.use((req, res, next) => {
 app.use('/', indexRoutes);
 app.use('/rooms', roomRoutes);
 app.use('/rooms/:id/reviews', reviewRoutes);
-app.use('/rooms/:id/comments', commentRoutes);
 app.use((req, res) => {
   res.redirect('/');
 });

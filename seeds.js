@@ -4,8 +4,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
 require('mongoose');
-const Comment = require('./models/comment'),
-  Room = require('./models/room'),
+const Room = require('./models/room'),
   Review = require('./models/review');
 
 const seeds = [
@@ -60,18 +59,9 @@ function calculateAverage(reviews) {
 
 async function seedDB() {
   await Room.deleteMany({});
-  // Comment.deleteMany({});
   await Review.deleteMany({});
   for (const seed of seeds) {
     const room = await Room.create(seed);
-    // Comment.create(
-    //   {
-    //     text: "This place is great, but I wish there was internet",
-    //     author: {
-    //       id: "588c2e092403d111454fff76",
-    //       username: "Jack"
-    //     }
-    //   });
     // eslint-disable-next-line one-var
     const review = await Review.create({
       rating: 5,
@@ -82,7 +72,6 @@ async function seedDB() {
         username: 'Jack'
       }
     });
-    // room.comments.push(comment);
     room.reviews.push(review);
     room.rating = calculateAverage(room.reviews);
     room.save();

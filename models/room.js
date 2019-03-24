@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),
-  Comment = require('./comment'),
   Review = require('./review');
 
 // SCHEMA SETUP
@@ -31,12 +30,6 @@ const roomSchema = new mongoose.Schema({
     },
     username: String
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ],
   reviews: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -51,11 +44,6 @@ const roomSchema = new mongoose.Schema({
 
 // Async call to remove comments/reviews if you delete the room
 roomSchema.pre('remove', async () => {
-  await Comment.deleteMany({
-    _id: {
-      $in: this.comments
-    }
-  });
   await Review.deleteMany({
     _id: {
       $in: this.reviews

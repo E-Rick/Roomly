@@ -2,7 +2,6 @@
 /* eslint-disable no-lonely-if */
 // all the middleware goes here
 const Room = require('../models/room'),
-  Comment = require('../models/comment'),
   Review = require('../models/review');
 
 module.exports = {
@@ -49,30 +48,6 @@ module.exports = {
     });
   },
 
-  checkCommentOwnership: (req, res, next) => {
-    // is user logged in?
-    if (req.isAuthenticated()) {
-      Comment.findById(req.params.comment_id, (err, foundComment) => {
-        if (err || !foundComment) {
-          req.flash('error', 'Comment not found');
-          res.redirect('/rooms');
-        } else {
-          // does user own the comment
-          // have to use .equals because foundcomment is a mongoose obj not string
-          if (foundComment.author.id.equals(req.user._id) || req.user.isAdmin) next();
-          else {
-            req.flash('error', 'You do not have permission to do that!');
-            res.redirect('/rooms');
-          }
-        }
-      });
-    } else {
-      // if not, redirect
-      req.flash('error', 'You need to be logged in to do that');
-      res.redirect('/rooms');
-    }
-  },
-
   // middleware.checkReviewExistence checks if a user already reviewed the room
   // only one review per user is allowed
   checkReviewOwnership: (req, res, next) => {
@@ -82,7 +57,7 @@ module.exports = {
           req.flash('error', 'Sorry, no review found with that id');
           res.redirect('/rooms');
         } else {
-          // does user own the comment?
+          // does user own the review?
           if (foundReview.author.id.equals(req.user._id) || req.user.isAdmin) {
             req.review = foundReview;
             next();
