@@ -1,15 +1,13 @@
 <% layout('layouts/profile') -%>
 <div class="row">
 	<div class="col-lg-4 text-center">
-		<div>
-			<img src="<%= user.avatar %>" alt="user profile image" class="img-thumbnail" style="border-radius: 50%;">
+    <div>
+      <img src="<%= currentUser.avatar.secure_url %>" alt="<%= currentUser.username %>'s profile image" class="profile-image">
     </div>
-    <a href="#" class="d-block">Edit Profile</a>
-    <a href="#" class="d-block">Avatar</a>
-    <a href="/users/<%= user.id %>" class="btn btn-outline-dark">View Profile</a>
+    <a href="/users/<%= user.id %>" class="btn btn-outline-dark mt-2">View Profile</a>
 	</div>
   <div class="col-lg-8">
-    <form action="/profile?_method=PUT" method="POST">
+    <form action="/profile?_method=PUT" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="username" value="<%= user.username %>" required>
@@ -21,7 +19,7 @@
       <div class="form-group">
         <label for="last-name">Last Name</label>
         <input type="text" id="last-name" name="lastName" placeholder="last name" value="<%= user.lastName %>" required>
-        <small id="emailHelp" class="form-text text-muted">Your public profile only shows your first name/</small>
+        <small id="emailHelp" class="form-text text-muted">Your public profile only shows your first name.</small>
       </div>
       <div class="form-group">
         <label for="current-password">Current Password</label>
@@ -45,6 +43,7 @@
       <div class="form-group">
         <label for="avatar">Avatar</label>
         <input type="file" id="avatar" name="avatar">
+        <small id="emailHelp" class="form-text text-muted">This will delete existing image.</small>
       </div>
       <button type="submit" id="submit" class="btn btn-danger">Save</button>
     </form>

@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     username: String,
     password: String,
     avatar: {
-      secure_url: { type: String, default: '/images/placeholder.jpg' },
+      secure_url: { type: String, default: '/images/placeholder@roomly.png' },
       public_id: String
     },
     firstName: String,

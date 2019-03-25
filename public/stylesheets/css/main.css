@@ -262,6 +262,11 @@ body {
   border-color: #767676;
 }
 
+.profile-image {
+  width: 150px;
+  border-radius: 50%;
+}
+
 .footer {
   background-color: #f6e4e6;
 }

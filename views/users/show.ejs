@@ -2,9 +2,9 @@
 <div class="row">
 	<div class="col-lg-4 text-center">
 		<div>
-			<img src="<%= user.avatar %>" alt="user profile image" class="img-thumbnail" style="border-radius: 50%;">
+      <img src="<%= user.avatar.secure_url %>" alt="<%= currentUser.username %>'s profile image" class="profile-image">
     </div>
-    <a href="/profile" class="<%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Update Photo</a>
+    <a href="/profile" class="btn btn-outline-dark mt-2 <%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Edit Profile</a>
 	</div>
   <div class="col-lg-8">
     <h1>Hi, I'm <%= user.firstName + " " + user.lastName %></h1>
