@@ -16,5 +16,5 @@ function starmark(item) {
 }
 
 function result() {
-  document.getElementById('rating').value = count;
+  if (count) document.getElementById('rating').value = count;
 }
