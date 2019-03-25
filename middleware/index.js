@@ -2,7 +2,8 @@
 /* eslint-disable no-lonely-if */
 // all the middleware goes here
 const Room = require('../models/room'),
-  Review = require('../models/review');
+  Review = require('../models/review'),
+  User = require('../models/user');
 
 module.exports = {
   asyncErrorHandler: fn => (req, res, next) => {
@@ -94,6 +95,51 @@ module.exports = {
     } else {
       req.flash('error', 'You need to login first.');
       res.redirect('back');
+    }
+  },
+
+  isValidPassword: async (req, res, next) => {
+    const { user } = await User.authenticate()(req.user.username, req.body.currentPassword);
+    if (user) {
+      // add user to res.locals
+      res.locals.user = user;
+      // go to next middleware
+      next();
+    } else {
+      // flash an error
+      req.flash('error', 'Incorrect current password!');
+      // short circuit the route middleware and redirect to /profile
+      return res.redirect('/profile');
+    }
+  },
+
+  changePassword: async (req, res, next) => {
+    // destructure new password values from req.body object
+    const { newPassword, passwordConfirmation } = req.body;
+    // check if password confirmation value exist
+    if (newPassword && !passwordConfirmation) {
+      req.flash('error', 'Missing password confirmation');
+      return res.redirect('/profile');
+    }
+    // check if new password values exist
+    if (newPassword && passwordConfirmation) {
+      // destructure user from res.locals
+      const { user } = res.locals;
+      // check if new passwords match
+      if (newPassword === passwordConfirmation) {
+        // set new password on user object
+        await user.setPassword(newPassword);
+        // go to next middleware
+        next();
+      } else {
+        // flash error
+        req.flash('error', 'New passwords must match!');
+        // short circuit the route middleware and redirect to /profile
+        return res.redirect('/profile');
+      }
+    } else {
+      // go to next middleware
+      next();
     }
   },
 

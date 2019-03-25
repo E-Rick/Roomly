@@ -6,45 +6,45 @@
     </div>
     <a href="#" class="d-block">Edit Profile</a>
     <a href="#" class="d-block">Avatar</a>
-    <button href="/users/<%= user.id %>" class="btn btn-outline-dark">View Profile</button>
+    <a href="/users/<%= user.id %>" class="btn btn-outline-dark">View Profile</a>
 	</div>
   <div class="col-lg-8">
     <form action="/profile?_method=PUT" method="POST">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="user[username]" placeholder="username" value="<%= user.username %>" required>
+        <input type="text" id="username" name="username" placeholder="username" value="<%= user.username %>" required>
       </div>
       <div class="form-group">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="user[firstName]" placeholder="first name" value="<%= user.firstName %>" required>
+        <input type="text" id="first-name" name="firstName" placeholder="first name" value="<%= user.firstName %>" required>
       </div>
       <div class="form-group">
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="user[lastName]" placeholder="last name" value="<%= user.lastName %>" required>
+        <input type="text" id="last-name" name="lastName" placeholder="last name" value="<%= user.lastName %>" required>
         <small id="emailHelp" class="form-text text-muted">Your public profile only shows your first name/</small>
       </div>
       <div class="form-group">
         <label for="current-password">Current Password</label>
-        <input type="password" id="current-password" name="user[currentPassword]" placeholder="current password" required>
+        <input type="password" id="current-password" name="currentPassword" placeholder="current password" required>
       </div>
       <div class="form-group">
         <label for="new-password">New Password</label>
-        <input type="password" id="new-password" name="user[newPassword]" placeholder="new password">
+        <input type="password" id="new-password" name="newPassword" placeholder="new password">
       </div>
       <div class="form-group">
         <label for="password-confirmation">Password Confirmation</label>
-        <input type="password" id="password-confirmation" name="user[passwordConfirmation]" placeholder="password confirmation">
+        <input type="password" id="password-confirmation" name="passwordConfirmation" placeholder="password confirmation">
       </div>
       <div id="validation-message">
       </div>
       <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" id="email" name="user[email]" placeholder="email address" value="<%= user.email %>">
+        <input type="email" id="email" name="email" placeholder="email address" value="<%= user.email %>">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group">
         <label for="avatar">Avatar</label>
-        <input type="file" id="avatar" name="user[avatar]">
+        <input type="file" id="avatar" name="avatar">
       </div>
       <button type="submit" id="submit" class="btn btn-danger">Save</button>
     </form>

@@ -4,6 +4,7 @@
 		<div>
 			<img src="<%= user.avatar %>" alt="user profile image" class="img-thumbnail" style="border-radius: 50%;">
     </div>
+    <a href="/profile" class="<%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Update Photo</a>
 	</div>
   <div class="col-lg-8">
     <h1>Hi, I'm <%= user.firstName + " " + user.lastName %></h1>

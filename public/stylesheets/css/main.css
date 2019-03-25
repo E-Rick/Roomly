@@ -239,6 +239,11 @@ body {
   color: white;
 }
 
+.btn-danger:disabled {
+  background-color: #767676;
+  border-color: #767676;
+}
+
 .error {
   color: #c12026;
 }

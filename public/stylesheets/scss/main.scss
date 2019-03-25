@@ -238,6 +238,11 @@ body {
   color: white;
 }
 
+.btn-danger:disabled {
+  background-color: $grey;
+  border-color: $grey;
+}
+
 .error {
   color: $primary-dark;
 }

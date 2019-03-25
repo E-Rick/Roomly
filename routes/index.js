@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 const router = require('express').Router(),
   User = require('../models/user'),
-  { asyncErrorHandler, isLoggedIn } = require('../middleware'),
-  { postRegister, postLogin, getLogout, getProfile, getUser } = require('../controllers'),
+  { asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
+  { postRegister, postLogin, getLogout, getProfile, getUser, updateProfile } = require('../controllers'),
   Room = require('../models/room');
 
 // Root route
@@ -31,6 +31,14 @@ router.get('/logout', getLogout);
 
 // User profiles
 router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
+
+router.put(
+  '/profile',
+  isLoggedIn,
+  asyncErrorHandler(isValidPassword),
+  asyncErrorHandler(changePassword),
+  asyncErrorHandler(updateProfile)
+);
 
 router.get('/users/:id', asyncErrorHandler(getUser));
 
