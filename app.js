@@ -9,6 +9,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   flash = require('connect-flash'),
   passport = require('passport'),
+  session = require('express-session'),
   LocalStrategy = require('passport-local'),
   methodOverride = require('method-override'),
   User = require('./models/user'),
@@ -37,7 +38,7 @@ app.use(cookieParser());
 
 // PASSPORT CONFIGURATION
 app.use(
-  require('express-session')({
+  session({
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false
@@ -46,6 +47,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
