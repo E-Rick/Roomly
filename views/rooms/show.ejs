@@ -1,97 +1,98 @@
 <% layout('layouts/room-show-layout') -%>
-
-<div class="row justify-content-center">
-  <div class="col-md-9">
-    <div>
-      <% room.images.forEach(function(image) { %>
-      <img src="<%= image.url %>" alt="Room image" width="200px"/>
-      <% }); %>
-    </div>
-    <%# Show room card %>
-    <div class="card mb-3 border-0">
-      <img src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top show-images" alt="<%= room.name %>" />
-      <div class="card-body pb-0">
-        <h4 class="float-right"><strong>$<%= room.price %></strong>/night</h4>
-        <h3 class="card-title"><strong><%= room.name %></strong></h3>
-        <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
-        <hr />
-        <p class="card-text"><%= room.description %></p>
-        <hr>
-        <p class="card-text"><strong>Amenities</strong></p>
-        <p class="card-text"><i class="fas fa-wifi"></i> Wifi</p>
-        <p class="card-text"><i class="fas fa-swimming-pool"></i> Pool</p>
-        <p class="card-text"><i class="fas fa-utensils"></i> Kitchen</p>
-        <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
-        <a href="/rooms/<%= room._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
-        <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">
-          <button class="btn btn-sm btn-danger">Delete</button>
-        </form>
-        <% } %>
-      </div>
-    </div>
-    <div class="card border-0">
-      <div class="card-body py-0">
-        <hr>
-        <% if (room.rating === 0) { %>
-          <h2><strong>No reviews yet</strong></h2>
-        <% } else { %>
-        <p>
-          <strong><h3 class="d-inline"><%= room.reviews.length %> Reviews </h3></strong>
-          <span class="fa fa-star fa-lg checked"></span>
-          <span class="fa fa-star fa-lg <% if (room.rating > 1.5) { %> checked <% } %>"></span>
-          <span class="fa fa-star fa-lg <% if (room.rating > 2.5) { %> checked <% } %>"></span>
-          <span class="fa fa-star fa-lg <% if (room.rating > 3.5) { %> checked <% } %>"></span>
-          <span class="fa fa-star fa-lg <% if (room.rating > 4.5) { %> checked <% } %>"></span>
-        </p>
-        <p>
-          <h4>Latest reviews for this room:</h4>
-        </p>
-        <hr style="margin-top: 0;">
-        <% room.reviews.slice(0, 5).forEach(function(review){ %>
-        <div class="row">
-          <div class="col-md-3">
-            <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %><%- '<span class="fa fa-star"></span>'.repeat(5 - review.rating) %>
-            <div>Review by: <strong><%= review.author.username %></strong></div>
-            <span><em><%= review.updatedAt.toDateString() %></em></span>
-          </div>
-          <div class="col-md-9">
-            <p style="text-align: justify; word-wrap: break-word;">
-              <%= review.text %>
-            </p>
-            <% if(currentUser && (review.author.id.equals(currentUser._id) || currentUser.isAdmin)){ %>
-            <a class="btn btn-sm btn-warning float-left mr-1"
-              href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
-            <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE"
-              method="POST">
-              <input type="submit" class="btn btn-sm btn-danger" value="Delete">
-            </form>
-            <% } %>
-          </div>
-        </div>
-        <hr>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <div>
+        <% room.images.forEach(function(image) { %>
+        <img src="<%= image.url %>" alt="Room image" width="200px"/>
         <% }); %>
-        <div style="margin-bottom: 10px;">
-          <h5 id="seeReviews"><a href="/rooms/<%= room._id %>/reviews"><i class="fa fa-search" aria-hidden="true"></i> See all
-              reviews</a></h5>
-        </div>
-        <% } %>
-        <div>
-          <a id="newReview" class="btn btn-primary btn-md <% if (currentUser && room.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled d-none <% } %>"
-            href="/rooms/<%= room._id %>/reviews/new">
-            Write a New Review</a>
+      </div>
+      <%# Show room card %>
+      <div class="card mb-3 border-0">
+        <img src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top show-images" alt="<%= room.name %>" />
+        <div class="card-body pb-0">
+          <h4 class="float-right"><strong>$<%= room.price %></strong>/night</h4>
+          <h3 class="card-title"><strong><%= room.name %></strong></h3>
+          <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
+          <hr />
+          <p class="card-text"><%= room.description %></p>
+          <hr>
+          <p class="card-text"><strong>Amenities</strong></p>
+          <p class="card-text"><i class="fas fa-wifi"></i> Wifi</p>
+          <p class="card-text"><i class="fas fa-swimming-pool"></i> Pool</p>
+          <p class="card-text"><i class="fas fa-utensils"></i> Kitchen</p>
+          <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
+          <a href="/rooms/<%= room._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+          <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+          <% } %>
         </div>
       </div>
-    </div>
-
-    <div class="card border-0">
-      <div class="card-body neighborhood pt-0">
-        <h2 class="mt-5 mb-2" >The neighborhood</h5>
-        <p>This room is located in <%= room.location %></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div id='map'></div>
+      <div class="card border-0">
+        <div class="card-body py-0">
+          <hr>
+          <% if (room.rating === 0) { %>
+            <h2><strong>No reviews yet</strong></h2>
+          <% } else { %>
+          <p>
+            <strong><h3 class="d-inline"><%= room.reviews.length %> Reviews </h3></strong>
+            <span class="fa fa-star fa-lg checked"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 1.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 2.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 3.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 4.5) { %> checked <% } %>"></span>
+          </p>
+          <p>
+            <h4>Latest reviews for this room:</h4>
+          </p>
+          <hr style="margin-top: 0;">
+          <% room.reviews.slice(0, 5).forEach(function(review){ %>
+          <div class="row">
+            <div class="col-md-3">
+              <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %><%- '<span class="fa fa-star"></span>'.repeat(5 - review.rating) %>
+              <div>Review by: <strong><%= review.author.username %></strong></div>
+              <span><em><%= review.updatedAt.toDateString() %></em></span>
+            </div>
+            <div class="col-md-9">
+              <p style="text-align: justify; word-wrap: break-word;">
+                <%= review.text %>
+              </p>
+              <% if(currentUser && (review.author.id.equals(currentUser._id) || currentUser.isAdmin)){ %>
+              <a class="btn btn-sm btn-warning float-left mr-1"
+                href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
+              <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE"
+                method="POST">
+                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+              </form>
+              <% } %>
+            </div>
+          </div>
+          <hr>
+          <% }); %>
+          <div style="margin-bottom: 10px;">
+            <h5 id="seeReviews"><a href="/rooms/<%= room._id %>/reviews"><i class="fa fa-search" aria-hidden="true"></i> See all
+                reviews</a></h5>
+          </div>
+          <% } %>
+          <div>
+            <a id="newReview" class="btn btn-primary btn-md <% if (currentUser && room.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled d-none <% } %>"
+              href="/rooms/<%= room._id %>/reviews/new">
+              Write a New Review</a>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <div class="card border-0">
+        <div class="card-body neighborhood pt-0">
+          <h2 class="mt-5 mb-2" >The neighborhood</h5>
+          <p>This room is located in <%= room.location %></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div id='map'></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>

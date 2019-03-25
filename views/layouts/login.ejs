@@ -18,17 +18,12 @@
         </div>
         <div class="d-none d-lg-block col-lg-1"></div>
         <div class="col-md-6 col-lg-4  form text-center">
-          <!-- Flash message -->
-          <% if(error && error.length > 0){ %>
-            <div class="alert alert-danger" role="alert">
-            <%= error %>
-            </div>
-          <% } %> <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
-              <%= success %>
-            </div>
-          <% } %>
+          <% include ../partials/flash-messages %>
+          <!-- Form -->
           <%- body -%>
+        </div>
+      </div>
+    </div>
     <!-- Scripts -->
     <div class="d-none d-lg-block col-lg-1"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

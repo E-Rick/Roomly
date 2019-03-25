@@ -47,7 +47,7 @@ input {
   width: 80px;
 }
 
-.btn-primary {
+.btn-danger {
   background-color: #f7a8ab;
   border-color: #f7a8ab;
   color: white;
@@ -57,8 +57,23 @@ input {
   padding: 0px 50px;
 }
 
+.btn-danger:hover {
+  background-color: #cf5257;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+  color: white;
+  font-size: 2rem;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
 .btn-primary:hover {
-  background-color: #ce5257;
+  background-color: #2286c3;
   color: white;
 }
 
@@ -69,11 +84,11 @@ input {
 }
 
 .text-link {
-  color: #a07d87;
+  color: #767676;
 }
 
 .text-link:hover {
-  color: #ce5257;
+  color: #cf5257;
 }
 
 #loginPhoto {
@@ -118,10 +133,24 @@ hr:after {
   background-color: #fcfcfa;
 }
 
+.alert-danger {
+  background-color: #f7a8ab;
+  border-color: #f7a8ab;
+  color: white;
+}
+
+.alert-success {
+  background-color: #9be7ff;
+  color: #2c2928;
+  border-color: #9be7ff;
+}
+
 @media (max-width: 767.98px) {
+  .alert {
+    margin-top: 71px;
+  }
   .navbar-brand {
     height: 70px;
     width: 70px;
   }
 }
-/*# sourceMappingURL=login.css.map */

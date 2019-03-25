@@ -14,6 +14,15 @@
   src: url(/fonts/Anodina/Anodina.Regular.otf);
 }
 
+$primary-dark: #c12026;
+$primary: #cf5257;
+$primary-light: #f7a8ab;
+$secondary-dark: #2286c3;
+$secondary: #64b5f6;
+$secondary-light: #9be7ff;
+$grey: #767676;
+$black: #2c2928;
+
 html,
 body {
   padding: 0;
@@ -47,9 +56,23 @@ input {
   width: 80px;
 }
 
+.btn-danger {
+  background-color: $primary-light;
+  border-color: $primary-light;
+  color: white;
+  font-size: 2rem;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
+.btn-danger:hover {
+  background-color: $primary;
+  color: white;
+}
+
 .btn-primary {
-  background-color: #f7a8ab;
-  border-color: #f7a8ab;
+  background-color: $secondary;
+  border-color: $secondary;
   color: white;
   font-size: 2rem;
   transition: all 0.3s ease 0s;
@@ -57,7 +80,7 @@ input {
 }
 
 .btn-primary:hover {
-  background-color: #ce5257;
+  background-color: $secondary-dark;
   color: white;
 }
 
@@ -68,11 +91,11 @@ input {
 }
 
 .text-link {
-  color: #a07d87;
+  color: $grey;
 }
 
 .text-link:hover {
-  color: #ce5257;
+  color: $primary;
 }
 
 #loginPhoto {
@@ -116,7 +139,22 @@ hr:after {
   background-color: #fcfcfa;
 }
 
+// Flash messages
+.alert-danger {
+  background-color: $primary-light;
+  border-color: $primary-light;
+  color: white;
+}
+.alert-success {
+  background-color: $secondary-light;
+  color: $black;
+  border-color: $secondary-light;
+}
+
 @media (max-width: 767.98px) {
+  .alert {
+    margin-top: 71px;
+  }
   .navbar-brand {
     height: 70px;
     width: 70px;

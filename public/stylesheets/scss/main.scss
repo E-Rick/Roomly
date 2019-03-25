@@ -211,6 +211,33 @@ body {
   color: $secondary;
 }
 
+// Flash messages
+.alert-danger {
+  background-color: $primary-light;
+  border-color: $primary-light;
+  color: white;
+}
+.alert-success {
+  background-color: $secondary-light;
+  color: $black;
+  border-color: $secondary-light;
+}
+
+// Edit Profile
+.btn-danger {
+  background-color: $primary-light;
+  border-color: $primary-light;
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
+.btn-danger:hover {
+  background-color: $primary;
+  color: white;
+}
+
 .footer {
   background-color: #f6e4e6;
 }

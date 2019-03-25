@@ -212,6 +212,33 @@ body {
   color: #64b5f6;
 }
 
+.alert-danger {
+  background-color: #f7a8ab;
+  border-color: #f7a8ab;
+  color: white;
+}
+
+.alert-success {
+  background-color: #9be7ff;
+  color: #2c2928;
+  border-color: #9be7ff;
+}
+
+.btn-danger {
+  background-color: #f7a8ab;
+  border-color: #f7a8ab;
+  color: white;
+  font-size: 1.5rem;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  padding: 0px 50px;
+}
+
+.btn-danger:hover {
+  background-color: #cf5257;
+  color: white;
+}
+
 .footer {
   background-color: #f6e4e6;
 }
