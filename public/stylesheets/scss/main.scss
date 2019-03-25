@@ -238,6 +238,25 @@ body {
   color: white;
 }
 
+.error {
+  color: $primary-dark;
+}
+.success {
+  color: $secondary-dark;
+}
+
+.btn-outline-dark {
+  color: $black;
+  border-color: $grey;
+}
+
+.btn-outline-dark:hover {
+  background-color: $grey;
+  border-color: $grey;
+}
+
+// Footer
+
 .footer {
   background-color: #f6e4e6;
 }

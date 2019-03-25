@@ -1,10 +1,12 @@
-<% layout('layouts/boilerplate') -%>
+<% layout('layouts/profile') -%>
 <div class="row">
 	<div class="col-lg-4 text-center">
 		<div>
 			<img src="<%= user.avatar %>" alt="user profile image" class="img-thumbnail" style="border-radius: 50%;">
     </div>
-    <a href="/users/<%= user.id %>">View Profile</a>
+    <a href="#" class="d-block">Edit Profile</a>
+    <a href="#" class="d-block">Avatar</a>
+    <button href="/users/<%= user.id %>" class="btn btn-outline-dark">View Profile</button>
 	</div>
   <div class="col-lg-8">
     <form action="/profile?_method=PUT" method="POST">
@@ -15,11 +17,11 @@
       <div class="form-group">
         <label for="first-name">First Name</label>
         <input type="text" id="first-name" name="user[firstName]" placeholder="first name" value="<%= user.firstName %>" required>
-        <small id="emailHelp" class="form-text text-muted">Your public profile only shows your first name/</small>
       </div>
       <div class="form-group">
         <label for="last-name">Last Name</label>
         <input type="text" id="last-name" name="user[lastName]" placeholder="last name" value="<%= user.lastName %>" required>
+        <small id="emailHelp" class="form-text text-muted">Your public profile only shows your first name/</small>
       </div>
       <div class="form-group">
         <label for="current-password">Current Password</label>
@@ -44,9 +46,8 @@
         <label for="avatar">Avatar</label>
         <input type="file" id="avatar" name="user[avatar]">
       </div>
-      <button type="submit" class="btn btn-danger">Save</button>
+      <button type="submit" id="submit" class="btn btn-danger">Save</button>
     </form>
-
 	</div>
 </div>
 

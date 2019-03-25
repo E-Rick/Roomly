@@ -239,6 +239,24 @@ body {
   color: white;
 }
 
+.error {
+  color: #c12026;
+}
+
+.success {
+  color: #2286c3;
+}
+
+.btn-outline-dark {
+  color: #2c2928;
+  border-color: #767676;
+}
+
+.btn-outline-dark:hover {
+  background-color: #767676;
+  border-color: #767676;
+}
+
 .footer {
   background-color: #f6e4e6;
 }
