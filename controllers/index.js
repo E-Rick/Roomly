@@ -36,19 +36,15 @@ module.exports = {
   },
 
   async getProfile(req, res, next) {
-    const rooms = await Room.find()
-      .where('author.id')
-      .equals(req.user._id)
-      .limit(5)
-      .exec();
-    res.render('users/show', { user: req.user, rooms });
+    res.render('profile', { user: req.user });
   },
 
   async getUser(req, res, next) {
     const user = await User.findById(req.params.id),
       rooms = await Room.find()
-        .where('author.id')
+        .where('author')
         .equals(user._id)
+        .limit(4)
         .exec();
     res.render('users/show', { user, rooms });
   }
