@@ -120,7 +120,7 @@ module.exports = {
     room.description = req.body.room.description;
     room.price = req.body.room.price;
     //  save the updated room into the db
-    room.save();
+    await room.save();
     res.redirect(`/rooms/${req.params.id}`); // redirect (show page)
   },
 

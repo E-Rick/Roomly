@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 const passport = require('passport'),
+  util = require('util'),
   User = require('../models/user'),
-  Room = require('../models/room');
+  Room = require('../models/room'),
+  mapBoxToken = process.env.MAPBOX_TOKEN;
 
 module.exports = {
   async postRegister(req, res, next) {
@@ -39,10 +41,31 @@ module.exports = {
     res.render('profile', { user: req.user });
   },
 
+  async updateProfile(req, res, next) {
+    // destructure username and email from req.body
+    const { username, email, firstName, lastName } = req.body,
+      // destructure user object from res.locals
+      { user } = res.locals;
+    // check if username or email need to be updated
+    if (username) user.username = username;
+    if (email) user.email = email;
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
+    // save the updated user to the database
+    await user.save();
+    // promsify req.login
+    const login = util.promisify(req.login.bind(req));
+    // log the user back in with new info
+    await login(user);
+    // redirect to /profile with a success flash message
+    req.flash('success', 'Profile successfully updated!');
+    res.redirect('/profile');
+  },
+
   async getUser(req, res, next) {
     const user = await User.findById(req.params.id),
       rooms = await Room.find()
-        .where('author')
+        .where('author.id')
         .equals(user._id)
         .limit(4)
         .exec();
