@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-lg-4 text-center">
 		<div>
-      <img src="<%= user.avatar.secure_url %>" alt="<%= currentUser.username %>'s profile image" class="profile-image">
+      <img src="<%= user.avatar.secure_url %>" alt="<%= user.username %>'s profile image" class="profile-image">
     </div>
     <a href="/profile" class="btn btn-outline-dark mt-2 mb-4 <%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Edit Profile</a>
 	</div>

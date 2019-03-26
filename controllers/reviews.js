@@ -46,7 +46,7 @@ module.exports = {
       review.save();
       room.reviews.push(review);
       room.rating = calculateAverage(room.reviews); // calculate the new average review for the room
-      room.save();
+      await room.save();
       req.flash('success', 'Your review has been successfully added.');
       return res.redirect(`/rooms/${room._id}`);
     } catch (e) {
@@ -66,7 +66,7 @@ module.exports = {
       .exec();
     // recalculate room average
     room.rating = calculateAverage(room.reviews);
-    room.save();
+    await room.save();
     req.flash('success', 'Your review was successfully edited.');
     res.redirect(`/rooms/${room._id}`);
   },
@@ -82,7 +82,7 @@ module.exports = {
       .exec();
     // recalculate room average
     room.rating = calculateAverage(room.reviews);
-    room.save();
+    await room.save();
     req.flash('success', 'Your review was deleted successfully.');
     res.redirect(`/rooms/${req.params.id}`);
   }

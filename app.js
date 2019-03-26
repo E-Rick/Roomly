@@ -4,7 +4,6 @@ require('dotenv').config();
 const express = require('express'),
   engine = require('ejs-mate'),
   app = express(),
-  bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
   mongoose = require('mongoose'),
   flash = require('connect-flash'),

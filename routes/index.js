@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 const router = require('express').Router(),
+  multer = require('multer'),
   User = require('../models/user'),
   { asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
-  { postRegister, postLogin, getLogout, getProfile, getUser, updateProfile } = require('../controllers'),
-  multer = require('multer'),
+  { postRegister, postLogin, getLogin, getLogout, getProfile, getUser, updateProfile } = require('../controllers'),
   { storage } = require('../cloudinary'),
   upload = multer({ storage }),
   Room = require('../models/room');
@@ -22,9 +22,7 @@ router.get('/register', (req, res) => {
 router.post('/register', upload.single('avatar'), asyncErrorHandler(postRegister));
 
 // show login form
-router.get('/login', (req, res) => {
-  res.render('login', { page: 'login' });
-});
+router.get('/login', getLogin);
 
 // handling login logic route
 router.post('/login', postLogin);

@@ -100,7 +100,6 @@ const middleware = {
   },
 
   isValidPassword: async (req, res, next) => {
-    console.log(req.user);
     const { user } = await User.authenticate()(req.user.username, req.body.currentPassword);
     if (user) {
       // add user to res.locals

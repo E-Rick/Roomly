@@ -77,7 +77,7 @@
           <% } %>
           <div>
             <a id="newReview" class="btn btn-primary btn-md <% if (currentUser && room.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled d-none <% } %>"
-              href="/rooms/<%= room._id %>/reviews/new">
+              href="<% if (currentUser) { %> /rooms/<%= room._id %>/reviews/new <% } else { %> /login?returnTo=true <% } %>">
               Write a New Review</a>
           </div>
         </div>
