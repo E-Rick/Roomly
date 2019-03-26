@@ -28,7 +28,8 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 // use ejs-locals for all ejs templates
 app.engine('ejs', engine);
-app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, useNewUrlParser: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
