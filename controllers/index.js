@@ -38,17 +38,14 @@ module.exports = {
 
   getLogin(req, res, next) {
     if (req.isAuthenticated()) {
-      console.log('redirecting');
       return res.redirect('/');
     }
     if (req.query.returnTo) req.session.redirectTo = req.headers.referer;
-    console.log(`getLogin ${req.session.redirectTo}`);
     return res.render('login', { page: 'login' });
   },
 
   postLogin(req, res, next) {
     const redirectUrl = req.session.redirectTo || '/rooms';
-    console.log(redirectUrl);
     delete req.session.redirectTo;
     passport.authenticate('local', {
       successRedirect: redirectUrl,
