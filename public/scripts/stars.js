@@ -1,8 +1,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-unused-vars */
-let count;
+var count;
 function starmark(item) {
-  let i = 0;
+  var i = 0;
   count = item.id[0];
   sessionStorage.starRating = count;
   const subid = item.id.substring(1);

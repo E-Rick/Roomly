@@ -2,18 +2,12 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
-const cloudinary = require('cloudinary'),
-  mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
   mapBoxToken = process.env.MAPBOX_TOKEN,
   geocodingClient = mbxGeocoding({ accessToken: mapBoxToken }),
   Room = require('../models/room'),
-  Review = require('../models/review');
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET
-});
+  Review = require('../models/review'),
+  { cloudinary } = require('../cloudinary');
 
 module.exports = {
   async roomIndex(req, res, next) {
@@ -29,10 +23,9 @@ module.exports = {
     };
     req.body.room.images = [];
     for (const file of req.files) {
-      const image = await cloudinary.v2.uploader.upload(file.path);
       req.body.room.images.push({
-        url: image.secure_url,
-        public_id: image.public_id
+        url: file.secure_url,
+        public_id: file.public_id
       });
     }
     const response = await geocodingClient
@@ -96,11 +89,10 @@ module.exports = {
     if (req.files) {
       //  upload images
       for (const file of req.files) {
-        const image = await cloudinary.v2.uploader.upload(file.path);
         //  add images to room.images array
         room.images.push({
-          url: image.secure_url,
-          public_id: image.public_id
+          url: file.secure_url,
+          public_id: file.public_id
         });
       }
     }
