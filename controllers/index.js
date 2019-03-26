@@ -17,11 +17,12 @@ module.exports = {
       if (req.file) {
         // eslint-disable-next-line camelcase
         const { secure_url, public_id } = req.file;
-        req.body.image = {
+        req.body.avatar = {
           secure_url,
           public_id
         };
       }
+      console.log(req.body);
       const user = await User.register(new User(req.body), req.body.password);
       req.login(user, err => {
         if (err) return res.render('register', { error: err.message });
