@@ -11,7 +11,14 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
 
 module.exports = {
   async roomIndex(req, res, next) {
-    const rooms = await Room.find({});
+    const rooms = await Room.paginate(
+      {},
+      {
+        page: req.query.page || 1,
+        limit: 8
+      }
+    );
+    rooms.page = Number(rooms.page);
     res.render('rooms/index', { rooms, page: 'rooms' });
   },
 

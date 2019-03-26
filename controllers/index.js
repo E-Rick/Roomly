@@ -3,23 +3,37 @@ const passport = require('passport'),
   util = require('util'),
   User = require('../models/user'),
   Room = require('../models/room'),
+  { cloudinary } = require('../cloudinary'),
+  { deleteProfileImage } = require('../middleware'),
   mapBoxToken = process.env.MAPBOX_TOKEN;
 
 module.exports = {
   async postRegister(req, res, next) {
-    const newUser = new User({
-      username: req.body.username,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      avatar: req.body.avatar
-    });
-    await User.register(newUser, req.body.password, (err, user) => {
-      if (err) return res.render('register', { error: err.message });
-      passport.authenticate('local');
-      req.flash('success', `Successfully signed Up ${user.username}!`);
-      return res.redirect('/rooms');
-    });
+    try {
+      if (req.file) {
+        // eslint-disable-next-line camelcase
+        const { secure_url, public_id } = req.file;
+        req.body.image = {
+          secure_url,
+          public_id
+        };
+      }
+      const user = await User.register(new User(req.body), req.body.password);
+      req.login(user, err => {
+        if (err) return res.render('register', { error: err.message });
+        passport.authenticate('local');
+        req.flash('success', `Successfully signed Up ${user.username}!`);
+        return res.redirect('/rooms');
+      });
+    } catch (err) {
+      deleteProfileImage(req);
+      const { username, email } = req.body;
+      let error = err.message;
+      if (error.includes('duplicate') && error.includes('index: email_1 dup key')) {
+        error = 'A user with the given email is already registered';
+      }
+      res.render('register', { title: 'Register', username, email, error });
+    }
   },
 
   postLogin(req, res, next) {
@@ -42,6 +56,7 @@ module.exports = {
   },
 
   async updateProfile(req, res, next) {
+    console.log(req.body);
     // destructure username and email from req.body
     const { username, email, firstName, lastName } = req.body,
       // destructure user object from res.locals
@@ -51,6 +66,12 @@ module.exports = {
     if (email) user.email = email;
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
+    if (req.file) {
+      if (user.avatar.public_id) await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+      // eslint-disable-next-line camelcase
+      const { secure_url, public_id } = req.file;
+      user.avatar = { secure_url, public_id };
+    }
     // save the updated user to the database
     await user.save();
     // promsify req.login
