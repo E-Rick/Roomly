@@ -3,7 +3,19 @@ const router = require('express').Router(),
   multer = require('multer'),
   User = require('../models/user'),
   { asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
-  { postRegister, postLogin, getLogin, getLogout, getProfile, getUser, updateProfile } = require('../controllers'),
+  {
+    postRegister,
+    postLogin,
+    getLogin,
+    getLogout,
+    getProfile,
+    getUser,
+    updateProfile,
+    getForgotPw,
+    putForgotPw,
+    getReset,
+    putReset
+  } = require('../controllers'),
   { storage } = require('../cloudinary'),
   upload = multer({ storage }),
   Room = require('../models/room');
@@ -43,5 +55,17 @@ router.put(
 );
 
 router.get('/users/:id', asyncErrorHandler(getUser));
+
+/* GET /forgot */
+router.get('/forgot-password', getForgotPw);
+
+/* PUT /forgot */
+router.put('/forgot-password', asyncErrorHandler(putForgotPw));
+
+/* GET /reset/:token */
+router.get('/reset/:token', asyncErrorHandler(getReset));
+
+/* PUT /reset/:token */
+router.put('/reset/:token', asyncErrorHandler(putReset));
 
 module.exports = router;
