@@ -12,8 +12,8 @@ const express = require('express'),
   session = require('express-session'),
   LocalStrategy = require('passport-local'),
   methodOverride = require('method-override'),
-  User = require('./models/user'),
-  seedDB = require('./seeds');
+  User = require('./models/user');
+// seedDB = require('./seeds');
 
 // Requiring routes
 const roomRoutes = require('./routes/rooms'),

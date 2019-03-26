@@ -4,8 +4,31 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
 require('mongoose');
-const Room = require('./models/room'),
+const faker = require('faker'),
+  Room = require('./models/room'),
   Review = require('./models/review');
+
+async function seedRooms() {
+  await Room.deleteMany({});
+  for (const i of new Array(40)) {
+    const room = {
+      name: faker.lorem.word(),
+      description: faker.lorem.text(),
+      geometry: {
+        coordinates: [-73.9808, 40.7648],
+        type: 'Point'
+      },
+      author: {
+        id: '5c9947b9a0b393ab487af779',
+        username: 'poorl'
+      },
+      location: 'New York',
+      price: 333
+    };
+    await Room.create(room);
+  }
+  console.log('40 new rooms created');
+}
 
 const seeds = [
   {
@@ -46,36 +69,36 @@ const seeds = [
   }
 ];
 
-function calculateAverage(reviews) {
-  if (reviews.length === 0) {
-    return 0;
-  }
-  let sum = 0;
-  reviews.forEach(element => {
-    sum += element.rating;
-  });
-  return sum / reviews.length;
-}
+// function calculateAverage(reviews) {
+//   if (reviews.length === 0) {
+//     return 0;
+//   }
+//   let sum = 0;
+//   reviews.forEach(element => {
+//     sum += element.rating;
+//   });
+//   return sum / reviews.length;
+// }
 
-async function seedDB() {
-  await Room.deleteMany({});
-  await Review.deleteMany({});
-  for (const seed of seeds) {
-    const room = await Room.create(seed);
-    // eslint-disable-next-line one-var
-    const review = await Review.create({
-      rating: 5,
-      text: 'This place is great, but I wish there was internet',
-      room: room._id,
-      author: {
-        id: '588c2e092403d111454fff76',
-        username: 'Jack'
-      }
-    });
-    room.reviews.push(review);
-    room.rating = calculateAverage(room.reviews);
-    room.save();
-  }
-}
+// async function seedDB() {
+//   await Room.deleteMany({});
+//   await Review.deleteMany({});
+//   for (const seed of seeds) {
+//     const room = await Room.create(seed);
+//     // eslint-disable-next-line one-var
+//     const review = await Review.create({
+//       rating: 5,
+//       text: 'This place is great, but I wish there was internet',
+//       room: room._id,
+//       author: {
+//         id: '588c2e092403d111454fff76',
+//         username: 'Jack'
+//       }
+//     });
+//     room.reviews.push(review);
+//     room.rating = calculateAverage(room.reviews);
+//     room.save();
+//   }
+// }
 
-module.exports = seedDB;
+module.exports = seedRooms;
