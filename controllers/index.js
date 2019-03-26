@@ -56,31 +56,40 @@ module.exports = {
   },
 
   async updateProfile(req, res, next) {
-    console.log(req.body);
-    // destructure username and email from req.body
-    const { username, email, firstName, lastName } = req.body,
-      // destructure user object from res.locals
-      { user } = res.locals;
-    // check if username or email need to be updated
-    if (username) user.username = username;
-    if (email) user.email = email;
-    if (firstName) user.firstName = firstName;
-    if (lastName) user.lastName = lastName;
-    if (req.file) {
-      if (user.avatar.public_id) await cloudinary.v2.uploader.destroy(user.avatar.public_id);
-      // eslint-disable-next-line camelcase
-      const { secure_url, public_id } = req.file;
-      user.avatar = { secure_url, public_id };
+    try {
+      // destructure username and email from req.body
+      const { username, email, firstName, lastName } = req.body,
+        // destructure user object from res.locals
+        { user } = res.locals;
+      // check if username or email need to be updated
+      if (username) user.username = username;
+      if (email) user.email = email;
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (req.file) {
+        if (user.avatar.public_id) await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+        // eslint-disable-next-line camelcase
+        const { secure_url, public_id } = req.file;
+        user.avatar = { secure_url, public_id };
+      }
+      // save the updated user to the database
+      await user.save();
+      // promsify req.login
+      const login = util.promisify(req.login.bind(req));
+      // log the user back in with new info
+      await login(user);
+      // redirect to /profile with a success flash message
+      req.flash('success', 'Profile successfully updated!');
+      res.redirect('/profile');
+    } catch (err) {
+      deleteProfileImage(req);
+      const { username, email } = req.body;
+      let error = err.message;
+      if (error.includes('duplicate') && error.includes('index: email_1 dup key')) {
+        error = 'A user with the given email is already registered';
+      }
+      res.render('profile', { title: 'Edit Profile', username, email, error });
     }
-    // save the updated user to the database
-    await user.save();
-    // promsify req.login
-    const login = util.promisify(req.login.bind(req));
-    // log the user back in with new info
-    await login(user);
-    // redirect to /profile with a success flash message
-    req.flash('success', 'Profile successfully updated!');
-    res.redirect('/profile');
   },
 
   async getUser(req, res, next) {

@@ -4,14 +4,16 @@
 		<div>
       <img src="<%= user.avatar.secure_url %>" alt="<%= currentUser.username %>'s profile image" class="profile-image">
     </div>
-    <a href="/profile" class="btn btn-outline-dark mt-2 <%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Edit Profile</a>
+    <a href="/profile" class="btn btn-outline-dark mt-2 mb-4 <%= !currentUser || (currentUser.username !== user.username) ? 'd-none' : '' %>">Edit Profile</a>
 	</div>
   <div class="col-lg-8">
     <h1>Hi, I'm <%= user.firstName + " " + user.lastName %></h1>
+    <hr>
     <h4>Joined in <%= user.createdAt.getFullYear() %></h4>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam sapiente assumenda.
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam sapiente assumenda.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam sapiente assumenda.
+    <hr>
     <h3><%= user.firstName %>'s listings:</h3>
     <div class="row text-left">
     <% rooms.forEach(function(room){ %>

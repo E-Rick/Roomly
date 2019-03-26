@@ -2,7 +2,7 @@
 const express = require('express'),
   router = express.Router(),
   multer = require('multer'),
-  { cloudinary, storage } = require('../cloudinary'),
+  { storage } = require('../cloudinary'),
   upload = multer({ storage }),
   { roomIndex, roomCreate, roomNew, roomShow, roomEdit, roomUpdate, roomDestroy } = require('../controllers/rooms'),
   { isLoggedIn, asyncErrorHandler, checkRoomOwnership } = require('../middleware');

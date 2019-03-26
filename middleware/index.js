@@ -3,9 +3,10 @@
 // all the middleware goes here
 const Room = require('../models/room'),
   Review = require('../models/review'),
-  User = require('../models/user');
+  User = require('../models/user'),
+  { cloudinary } = require('../cloudinary');
 
-module.exports = {
+const middleware = {
   asyncErrorHandler: fn => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   },
@@ -99,6 +100,7 @@ module.exports = {
   },
 
   isValidPassword: async (req, res, next) => {
+    console.log(req.user);
     const { user } = await User.authenticate()(req.user.username, req.body.currentPassword);
     if (user) {
       // add user to res.locals
@@ -106,6 +108,7 @@ module.exports = {
       // go to next middleware
       next();
     } else {
+      middleware.deleteProfileImage(req);
       // flash an error
       req.flash('error', 'Incorrect current password!');
       // short circuit the route middleware and redirect to /profile
@@ -118,6 +121,7 @@ module.exports = {
     const { newPassword, passwordConfirmation } = req.body;
     // check if password confirmation value exist
     if (newPassword && !passwordConfirmation) {
+      middleware.deleteProfileImage(req);
       req.flash('error', 'Missing password confirmation');
       return res.redirect('/profile');
     }
@@ -132,6 +136,7 @@ module.exports = {
         // go to next middleware
         next();
       } else {
+        middleware.deleteProfileImage(req);
         // flash error
         req.flash('error', 'New passwords must match!');
         // short circuit the route middleware and redirect to /profile
@@ -148,5 +153,11 @@ module.exports = {
     // flash before redirect so it displays on the next page
     req.flash('error', 'You need to be logged in to do that!');
     res.redirect('/login');
+  },
+
+  deleteProfileImage: async req => {
+    if (req.file) await cloudinary.v2.uploader.destroy(req.file.public_id);
   }
 };
+
+module.exports = middleware;

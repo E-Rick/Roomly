@@ -3,6 +3,9 @@ const router = require('express').Router(),
   User = require('../models/user'),
   { asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
   { postRegister, postLogin, getLogout, getProfile, getUser, updateProfile } = require('../controllers'),
+  multer = require('multer'),
+  { storage } = require('../cloudinary'),
+  upload = multer({ storage }),
   Room = require('../models/room');
 
 // Root route
@@ -16,7 +19,7 @@ router.get('/register', (req, res) => {
 });
 
 // Handle signup logic route
-router.post('/register', asyncErrorHandler(postRegister));
+router.post('/register', upload.single('avatar'), asyncErrorHandler(postRegister));
 
 // show login form
 router.get('/login', (req, res) => {
@@ -34,6 +37,7 @@ router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
 
 router.put(
   '/profile',
+  upload.single('avatar'),
   isLoggedIn,
   asyncErrorHandler(isValidPassword),
   asyncErrorHandler(changePassword),

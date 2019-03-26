@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
-  Review = require('./review');
+  Review = require('./review'),
+  mongoosePaginate = require('mongoose-paginate');
 
 // SCHEMA SETUP
 
@@ -50,5 +51,7 @@ roomSchema.pre('remove', async () => {
     }
   });
 });
+
+roomSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Room', roomSchema);
