@@ -60,6 +60,10 @@ body {
   transition: background 500ms;
 }
 
+.dropdown-menu {
+  background-color: #f7a8ab;
+}
+
 .slideshow {
   position: fixed;
   width: 100%;
@@ -173,4 +177,3 @@ body {
 .no-cssanimations .slideshow li {
   opacity: 1;
 }
-/*# sourceMappingURL=landing.css.map */

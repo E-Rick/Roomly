@@ -1,10 +1,12 @@
 <% layout('layouts/boilerplate') -%>
 
 <div class="row justify-content-center">
+  <!-- Header -->
   <div class="col-md-12 text-center">
-    <h1 style="text-align: center;">Create a new room</h1>
+    <h1 class="mb-3">Create a new listing</h1>
   </div>
   <div class="col-xs-12 col-md-6 col-lg-4">
+    <!-- New Room Form -->
     <form action="/rooms" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <input class="form-control" type="text" name="room[name]" placeholder="name" required/>
@@ -25,12 +27,12 @@
         ></textarea>
       </div>
       <div class="form-group">
-        <input type="text" name="room[location]" placeholder="Location">
+        <input type="text" class="form-control" name="room[location]" placeholder="Location">
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-lg btn-default btn-block">Submit!</button>
+        <button class="btn btn-lg btn-danger btn-block">Submit!</button>
       </div>
     </form>
-    <a href="/rooms">Go Back</a>
+    <a class="text-link" href="/rooms"><img src="/images/back-icon.png"></i>Go Back</a>
   </div>
 </div>

@@ -22,6 +22,30 @@ body {
   padding: 0;
 }
 
+@media (min-width: 992px) {
+  .px-lg-6 {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
+
+.form-control:focus {
+  border-color: #767676;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(118, 118, 118, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(118, 118, 118, 0.6);
+}
+
+.btn-outline-danger {
+  border-color: #cf5257;
+  color: #cf5257;
+}
+
+.btn-outline-danger:hover {
+  border-color: #cf5257;
+  background-color: #cf5257;
+  color: white;
+}
+
 #map {
   width: 100%;
   height: 200px;
@@ -115,7 +139,7 @@ body {
 
 .thumbnails {
   width: 100%;
-  height: 15vh;
+  height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   border-bottom-left-radius: 3px;
@@ -149,6 +173,14 @@ body {
 
 .room-type {
   color: #767676;
+}
+
+.text-link {
+  color: #767676;
+}
+
+.text-link:hover {
+  color: #cf5257;
 }
 
 #newReview {
