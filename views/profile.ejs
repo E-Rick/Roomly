@@ -4,7 +4,7 @@
     <div>
       <img src="<%= currentUser.avatar.secure_url %>" alt="<%= currentUser.username %>'s profile image" class="profile-image">
     </div>
-    <a href="/users/<%= user.id %>" class="btn btn-outline-dark mt-2">View Profile</a>
+    <a href="/users/<%= user.id %>" class="btn btn-outline-dark mt-2 mb-3">View Profile</a>
 	</div>
   <div class="col-lg-8">
     <form action="/profile?_method=PUT" method="POST" enctype="multipart/form-data">

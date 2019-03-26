@@ -8,7 +8,7 @@
   <h3>Recently Added</h3>
   <div class="row text-left">
     <% rooms.forEach(function(room){ %>
-    <div class="col-xl-3 col-lg-4 col-6 mb-4 px-2">
+    <div class="col-xl-3 col-lg-4 col-6 mb-4">
       <div class="card border-0">
         <div class="inner">
           <img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
@@ -40,6 +40,7 @@
     </div>
     <% });%>
   </div>
+  <a href="#"><h5>Show all (100+)</h5></a>
 </section>
 
 <section id="latest">
@@ -78,5 +79,6 @@
     </div>
     <% });%>
   </div>
+  <a href="#"><h5>Show all (100+)</h5></a>
 </section>
 
