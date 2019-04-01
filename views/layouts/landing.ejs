@@ -19,13 +19,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar links -->
         <div class="navbar-nav mr-auto">
-            <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Home</a>
+            <a href="/rooms" class="nav-link nav-item">Explore</a>
         </div>
         <div class="navbar-nav navbar-right">
-            <a href="/rooms/new"class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
+            <a href="/rooms/new"class="nav-link nav-item">Become a host</a>
             <% if(!currentUser){ %>
-                <a href="/login" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">Login</a>
-                <a href="/register" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">Register</a>
+                <a href="/login" class="nav-link nav-item">Login</a>
+                <a href="/register" class="nav-link nav-item">Register</a>
             <% } else { %>
                 <a class="nav-link d-none d-lg-inline py-0 pr-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img src="<%= currentUser.avatar.secure_url %>" alt="Room image" width="50px" style="border-radius:50%"/>
