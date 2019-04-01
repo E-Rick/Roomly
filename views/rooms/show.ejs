@@ -26,14 +26,13 @@
 </div>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-10">
       <% if (!room.images[0]) { %>
       <img class="card-img-top w-100" src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" alt="First slide">
       <% } %>
       <%# Show room card %>
       <div class="card mb-3 border-0">
         <div class="card-body pb-0">
-          <h4 class="float-right"><strong>$<%= room.price %></strong>/night</h4>
           <h3 class="card-title"><strong><%= room.name %></strong></h3>
           <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
           <hr />
@@ -127,23 +126,36 @@
 <div class="fixed-bottom d-xl-none">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-9">
-        <div class="container d-xl-none booker clearfix">
-          <button type="button" class="btn btn-lg btn-dark float-right">Book</button>
-          <h4 class="float-left"><strong>$<%= room.price %></strong> per night</h4>
-          <% if (room.rating === 0) { %>
-            <h5 class="d-block"><strong class="d-block">No reviews yet</strong></h5>
-          <% } else { %>
-          <p>
-            <strong><h3 class="d-inline"><%= room.reviews.length %> Reviews </h3></strong>
-            <span class="fa fa-star fa-lg checked"></span>
-            <span class="fa fa-star fa-lg <% if (room.rating > 1.5) { %> checked <% } %>"></span>
-            <span class="fa fa-star fa-lg <% if (room.rating > 2.5) { %> checked <% } %>"></span>
-            <span class="fa fa-star fa-lg <% if (room.rating > 3.5) { %> checked <% } %>"></span>
-            <span class="fa fa-star fa-lg <% if (room.rating > 4.5) { %> checked <% } %>"></span>
-          </p>
-          <% } %>
-          
+      <div class="col-md-10">
+        <div class="container d-xl-none">
+          <div class="row justify-content-between">
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                  <span id="show-price">$<%= room.price %></span><span id="per-night"> per night</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <% if (room.rating === 0) { %>
+                    <h5 class="d-block"><strong class="d-block">No reviews yet</strong></h5>
+                  <% } else { %>
+                  <p>
+                    <span class="fa fa-star fa-sm checked"></span>
+                    <span class="fa fa-star fa-sm <% if (room.rating > 1.5) { %> checked <% } %>"></span>
+                    <span class="fa fa-star fa-sm <% if (room.rating > 2.5) { %> checked <% } %>"></span>
+                    <span class="fa fa-star fa-sm <% if (room.rating > 3.5) { %> checked <% } %>"></span>
+                    <span class="fa fa-star fa-sm <% if (room.rating > 4.5) { %> checked <% } %>"></span>
+                    <strong><span><%= room.reviews.length %></span></strong>
+                  </p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-lg btn-dark float-right" id="book-btn">Book</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

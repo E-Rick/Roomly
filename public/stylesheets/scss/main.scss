@@ -106,19 +106,7 @@ button.navbar-toggler:focus {
 .active {
 	border-bottom: 3px solid $grey;
 }
-//-------------- FOOTER START -------------------
-.footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	/* Set the fixed height of the footer here */
-	height: 60px;
-	background-color: #f5f5f5;
-}
-.container .text-muted {
-	margin: 20px 0;
-}
-// ------------- FOOTER END --------------------
+
 .rating-stars {
 	font-size: 40px;
 	cursor: pointer;
@@ -338,19 +326,19 @@ button.navbar-toggler:focus {
 	border-radius: 50%;
 }
 
-// SHOW PAGE BOOKING FOOTER
-.fixed-bottom {
-	background-color: white;
-	border-top: 1px solid $grey;
-	padding: 16px 0;
-	height: 100px;
-}
-
-// Footer
-
+//-------------- FOOTER START -------------------
 .footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
 	background-color: #f6e4e6;
 }
+.container .text-muted {
+	margin: 20px 0;
+}
+// ------------- FOOTER END --------------------
 
 @media (min-width: 768px) {
 	.bd-placeholder-img-lg {

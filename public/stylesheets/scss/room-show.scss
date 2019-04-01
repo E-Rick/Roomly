@@ -1,0 +1,53 @@
+$primary-dark: #c12026;
+$primary: #cf5257;
+$primary-light: #f7a8ab;
+$secondary-dark: #2286c3;
+$secondary: #64b5f6;
+$secondary-light: #9be7ff;
+$grey: #767676;
+$black: #2c2928;
+// -------- SHOW PAGE BOOKING FOOTER START -------
+.fixed-bottom {
+	background-color: white;
+	border-top: 1px solid $grey;
+	padding: 16px 0;
+	height: 100px;
+}
+#per-night {
+	font-size: 1rem;
+}
+#show-price {
+	font-size: 1.6rem;
+	font-weight: bold;
+}
+#book-btn {
+	background-color: $primary-light;
+	border-color: $primary-light;
+	color: white;
+	font-size: 1.5rem;
+	transition: all 0.3s ease 0s;
+	padding: 10px 80px;
+}
+#book-btn:hover {
+	background-color: $primary;
+	color: white;
+}
+
+// -------- SHOW PAGE BOOKING FOOTER END -------
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+	.footer {
+		margin-bottom: 0;
+	}
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+	.card-body {
+		margin-bottom: 100px;
+	}
+	.footer {
+		margin-bottom: 100px;
+	}
+}
