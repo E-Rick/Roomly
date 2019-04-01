@@ -1,30 +1,52 @@
 <% layout('layouts/room-show-layout') -%>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% if (room.images) { %>
+            <% room.images.forEach(function(image, index) { %>
+            <div class="carousel-item <% if (index === 0) { %> active <% } %> ">
+              <img class="d-block w-100" src="<%= image.url %>" alt="Room image" style="height: auto; max-height: 70vh"/>
+            </div>
+            <% }); %>
+          <% } %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>   
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-9">
-      <div>
-        <% room.images.forEach(function(image) { %>
-        <img src="<%= image.url %>" alt="Room image" width="200px"/>
-        <% }); %>
-      </div>
+      <% if (!room.images[0]) { %>
+      <img class="card-img-top w-100" src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" alt="First slide">
+      <% } %>
       <%# Show room card %>
       <div class="card mb-3 border-0">
-        <img src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top show-images" alt="<%= room.name %>" />
         <div class="card-body pb-0">
           <h4 class="float-right"><strong>$<%= room.price %></strong>/night</h4>
           <h3 class="card-title"><strong><%= room.name %></strong></h3>
           <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
           <hr />
           <p class="card-text"><%= room.description %></p>
-          <hr>
+          <hr />
           <p class="card-text"><strong>Amenities</strong></p>
           <p class="card-text"><i class="fas fa-wifi"></i> Wifi</p>
           <p class="card-text"><i class="fas fa-swimming-pool"></i> Pool</p>
           <p class="card-text"><i class="fas fa-utensils"></i> Kitchen</p>
           <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
-          <a href="/rooms/<%= room._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+          <a href="/rooms/<%= room._id %>/edit" id="room-edit" class="btn btn-sm btn-danger">Edit</a>
           <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">
-            <button class="btn btn-sm btn-danger">Delete</button>
+            <button id="room-delete" class="btn btn-sm btn-danger">Delete</button>
           </form>
           <% } %>
         </div>
@@ -100,3 +122,30 @@
   var room = <%- JSON.stringify(room) %>;
   mapboxgl.accessToken = "<%= mapBoxToken %>";
 </script>
+
+<!-- Booking Footer -->
+<div class="fixed-bottom d-xl-none">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <div class="container d-xl-none booker clearfix">
+          <button type="button" class="btn btn-lg btn-dark float-right">Book</button>
+          <h4 class="float-left"><strong>$<%= room.price %></strong> per night</h4>
+          <% if (room.rating === 0) { %>
+            <h5 class="d-block"><strong class="d-block">No reviews yet</strong></h5>
+          <% } else { %>
+          <p>
+            <strong><h3 class="d-inline"><%= room.reviews.length %> Reviews </h3></strong>
+            <span class="fa fa-star fa-lg checked"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 1.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 2.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 3.5) { %> checked <% } %>"></span>
+            <span class="fa fa-star fa-lg <% if (room.rating > 4.5) { %> checked <% } %>"></span>
+          </p>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
