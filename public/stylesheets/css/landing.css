@@ -82,6 +82,14 @@ body {
   transform: rotate(180deg);
 }
 
+button.navbar-toggler {
+  border: none !important;
+}
+
+button.navbar-toggler:focus {
+  outline: none !important;
+}
+
 .slideshow {
   position: fixed;
   width: 100%;

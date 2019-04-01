@@ -67,6 +67,12 @@ body {
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
+button.navbar-toggler {
+	border: none !important;
+}
+button.navbar-toggler:focus {
+	outline: none !important;
+}
 // --------- Navbar End -----------------
 // MAPBOX
 #map {

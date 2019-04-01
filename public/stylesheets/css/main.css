@@ -64,6 +64,14 @@ body {
   transform: rotate(180deg);
 }
 
+button.navbar-toggler {
+  border: none !important;
+}
+
+button.navbar-toggler:focus {
+  outline: none !important;
+}
+
 #map {
   width: 100%;
   height: 200px;
