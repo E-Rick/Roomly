@@ -1,17 +1,17 @@
 @font-face {
-  font-family: timeBurner;
-  src: url(/public/fonts/timeburnernormal.ttf);
+	font-family: timeBurner;
+	src: url(/public/fonts/timeburnernormal.ttf);
 }
 
 @font-face {
-  font-family: timeBurner;
-  src: url(/public/fonts/timeburnerbold.ttf);
-  font-weight: bold;
+	font-family: timeBurner;
+	src: url(/public/fonts/timeburnerbold.ttf);
+	font-weight: bold;
 }
 
 @font-face {
-  font-family: anodina;
-  src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
+	font-family: anodina;
+	src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
 }
 
 $primary-dark: #c12026;
@@ -19,131 +19,150 @@ $primary: #cf5257;
 $primary-light: #f7a8ab;
 
 body {
-  background-color: #000;
-  font-family: 'anodina', sans-serif;
+	background-color: #000;
+	font-family: 'anodina', sans-serif;
 }
 
 .navbar-brand {
-  height: 90px;
-  width: 90px;
+	height: 90px;
+	width: 90px;
 }
 
 #landing-header {
-  font-family: timeBurner;
-  z-index: 1;
-  position: relative;
-  text-align: center;
-  padding-top: 40vh;
+	font-family: timeBurner;
+	z-index: 1;
+	position: relative;
+	text-align: center;
+	padding-top: 40vh;
 }
 
 #landing-header h1 {
-  font-size: 5.5rem;
-  color: #fff;
+	font-size: 5.5rem;
+	color: #fff;
 }
 #mainNavbar {
-  font-size: 1.3rem;
-  font-weight: 100;
+	font-size: 1.3rem;
+	font-weight: 100;
 }
 
 #mainNavbar .nav-link {
-  color: white;
+	color: white;
 }
 
 #mainNavbar .nav-link:hover {
-  color: #ce5257;
+	color: #ce5257;
 }
 
 #mainNavbar .navbar-brand {
-  font-size: 1.6rem;
+	font-size: 1.6rem;
 }
 .navbar.scrolled {
-  background: rgb(222, 192, 222);
-  transition: background 500ms;
+	background: rgb(222, 192, 222);
+	transition: background 500ms;
 }
 
 .dropdown-menu {
-  background-color: $primary-light;
+	background-color: $primary-light;
+}
+
+.button.navbar-toggler:focus {
+	outline: 1px none;
+}
+
+.navbar-dark .navbar-toggler-icon {
+	background-image: url('/images/down-arrow-white.png');
+}
+
+.rotate {
+	-moz-transition: all .5s linear;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
+}
+.rotate.down {
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .slideshow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .btn {
-  background-color: #f7a8ab;
-  color: white;
-  font-size: 2rem;
-  letter-spacing: 5px;
-  transition: all 0.3s ease 0s;
-  border-radius: 25px;
-  padding: 0px 50px;
+	background-color: #f7a8ab;
+	color: white;
+	font-size: 2rem;
+	letter-spacing: 5px;
+	transition: all 0.3s ease 0s;
+	border-radius: 25px;
+	padding: 0px 50px;
 }
 
 .btn:hover {
-  background-color: #ce5257;
-  color: white;
+	background-color: #ce5257;
+	color: white;
 }
 
 .slideshow li {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  opacity: 0;
-  z-index: 0;
-  animation: imageAnimation 50s linear infinite;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index: 0;
+	animation: imageAnimation 50s linear infinite;
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url(https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+	background-image: url(https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 .slideshow li:nth-child(2) {
-  background-image: url(/images/newyork.jpg);
-  animation-delay: 10s;
+	background-image: url(/images/newyork.jpg);
+	animation-delay: 10s;
 }
 .slideshow li:nth-child(3) {
-  background-image: url(https://images.unsplash.com/photo-1503595653496-6935cf1d33a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80);
-  animation-delay: 20s;
+	background-image: url(https://images.unsplash.com/photo-1503595653496-6935cf1d33a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80);
+	animation-delay: 20s;
 }
 .slideshow li:nth-child(4) {
-  background-image: url(/images/japan.jpg);
-  animation-delay: 30s;
+	background-image: url(/images/japan.jpg);
+	animation-delay: 30s;
 }
 .slideshow li:nth-child(5) {
-  background-image: url(https://images.unsplash.com/photo-1456327594540-be0c28e27c01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
-  animation-delay: 40s;
+	background-image: url(https://images.unsplash.com/photo-1456327594540-be0c28e27c01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
+	animation-delay: 40s;
 }
 
 @keyframes imageAnimation {
-  0% {
-    opacity: 0;
-    animation-timing-function: ease-in;
-  }
-  10% {
-    opacity: 1;
-    animation-timing-function: ease-out;
-  }
-  20% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-  }
+	0% {
+		opacity: 0;
+		animation-timing-function: ease-in;
+	}
+	10% {
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+	20% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 0;
+	}
 }
 
 /* Older browser support - .no-cssanimations class added by modernizr */
 .no-cssanimations .slideshow li {
-  opacity: 1;
+	opacity: 1;
 }

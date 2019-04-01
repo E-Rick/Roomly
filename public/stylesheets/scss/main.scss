@@ -1,12 +1,12 @@
 @font-face {
-  font-family: anodina;
-  src: url(/fonts/Anodina/Anodina-Regular.otf);
+	font-family: anodina;
+	src: url(/fonts/Anodina/Anodina-Regular.otf);
 }
 
 @font-face {
-  font-family: anodina;
-  src: url(/fonts/Anodina/Anodina-Bold.otf);
-  font-weight: bold;
+	font-family: anodina;
+	src: url(/fonts/Anodina/Anodina-Bold.otf);
+	font-weight: bold;
 }
 
 $primary-dark: #c12026;
@@ -20,289 +20,334 @@ $black: #2c2928;
 $spacer: 1rem;
 
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
 body {
-  font-family: anodina;
-  height: 100%;
-  margin: 0;
-  margin-bottom: 60px;
-  padding: 0;
+	font-family: anodina;
+	height: 100%;
+	margin: 0;
+	margin-bottom: 60px;
+	padding: 0;
 }
-// Navbar
+// ----------- Navbar Start ---------------
 @media (min-width: 992px) {
-  .px-lg-6 {
-    padding-left: ($spacer * 5) !important;
-    padding-right: ($spacer * 5) !important;
-  }
+	.px-lg-6 {
+		padding-left: ($spacer * 5) !important;
+		padding-right: ($spacer * 5) !important;
+	}
+}
+.button.navbar-toggler:focus {
+	outline: 1px none;
+}
+.navbar-light .navbar-toggler-icon {
+	background-image: url('/images/down-arrow.png');
 }
 .form-control:focus {
-  border-color: $grey;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(118, 118, 118, 0.6);
+	border-color: $grey;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(118, 118, 118, 0.6);
 }
 .btn-outline-danger {
-  border-color: $primary;
-  color: $primary;
+	border-color: $primary;
+	color: $primary;
 }
 .btn-outline-danger:hover {
-  border-color: $primary;
-  background-color: $primary;
-  color: white;
+	border-color: $primary;
+	background-color: $primary;
+	color: white;
 }
-
+.rotate {
+	-moz-transition: all .5s linear;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
+}
+.rotate.down {
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+// --------- Navbar End -----------------
+// MAPBOX
 #map {
-  width: 100%;
-  height: 200px;
+	width: 100%;
+	height: 200px;
 }
 
 .marker {
-  background-image: url('/images/mapbox-icon.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+	background-image: url('/images/mapbox-icon.png');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 .mapboxgl-popup {
-  max-width: 200px;
+	max-width: 200px;
 }
 
 .mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .nav-link {
-  font-weight: bold;
-  border-bottom: 3px solid transparent;
+	font-weight: bold;
+	border-bottom: 3px solid transparent;
 }
 
 .nav-link:hover,
 .active {
-  border-bottom: 3px solid $grey;
+	border-bottom: 3px solid $grey;
 }
-
+//-------------- FOOTER START -------------------
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
 }
 .container .text-muted {
-  margin: 20px 0;
+	margin: 20px 0;
 }
-
+// ------------- FOOTER END --------------------
 .rating-stars {
-  font-size: 40px;
-  cursor: pointer;
+	font-size: 40px;
+	cursor: pointer;
 }
 
 .inner {
-  overflow: hidden;
-  z-index: 2;
+	overflow: hidden;
+	z-index: 2;
 }
 
 .inner .far {
-  color: white;
-  position: absolute;
-  top: 5%;
-  right: 6%;
-  z-index: 4;
+	color: white;
+	position: absolute;
+	top: 5%;
+	right: 6%;
+	z-index: 4;
 }
 
 .inner .fas {
-  color: $grey;
-  opacity: 0.6;
-  position: absolute;
-  top: 5%;
-  right: 6%;
-  z-index: 3;
+	color: $grey;
+	opacity: 0.6;
+	position: absolute;
+	top: 5%;
+	right: 6%;
+	z-index: 3;
 }
 
 .inner .under {
-  color: $grey;
-  opacity: 30%;
-  position: absolute;
-  top: 5%;
-  right: 6%;
+	color: $grey;
+	opacity: 30%;
+	position: absolute;
+	top: 5%;
+	right: 6%;
 }
 
 .inner img {
-  transition: all 1.5s ease;
+	transition: all 1.5s ease;
 }
 
 .inner:hover img {
-  transform: scale(1.5);
+	transform: scale(1.5);
 }
 
 .thumbnails {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  background-size: contain;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
 }
 
 .btn-card {
-  background-color: #f7a8ab;
-  border-color: #f7a8ab;
-  color: white;
-  transition: all 0.3s ease 0s;
-  padding: 0px 50px;
+	background-color: #f7a8ab;
+	border-color: #f7a8ab;
+	color: white;
+	transition: all 0.3s ease 0s;
+	padding: 0px 50px;
 }
 
 .btn-card:hover {
-  background-color: #ce5257;
-  color: white;
+	background-color: #ce5257;
+	color: white;
 }
 
 .price {
-  color: $black;
-  font-size: 1.2rem;
-  font-weight: bold;
+	color: $black;
+	font-size: 1.2rem;
+	font-weight: bold;
 }
 
 .room-type {
-  color: $grey;
+	color: $grey;
 }
 
 // Create room CSS
 .text-link {
-  color: $grey;
+	color: $grey;
 }
 
 .text-link:hover {
-  color: $primary;
+	color: $primary;
 }
 
 // Show room CSS
 #newReview {
-  background-color: $secondary-dark;
+	background-color: $secondary-dark;
 }
 
 #seeReviews {
-  margin-top: 6px;
+	margin-top: 6px;
 }
 
 .fa-lg {
-  margin-bottom: 6px;
+	margin-bottom: 6px;
+}
+
+#room-edit {
+	background-color: $secondary-dark;
+	border-color: $secondary-dark;
+	color: white;
+	font-size: 1rem;
+	transition: all 0.3s ease 0s;
+	padding: 0px 50px;
+}
+
+.btn-danger:hover {
+	background-color: $primary;
+	color: white;
+}
+
+#room-delete {
+	background-color: $primary;
+	font-size: 1rem;
+	border-color: $primary;
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: auto;
 }
 .form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+	position: relative;
+	box-sizing: border-box;
+	height: auto;
+	padding: 10px;
+	font-size: 16px;
 }
 .form-signin .form-control:focus {
-  z-index: 2;
+	z-index: 2;
 }
 .form-signin input[type='email'] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
 .form-signin input[type='password'] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .delete-form {
-  display: inline;
+	display: inline;
 }
 
 .bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .checked {
-  color: $secondary;
+	color: $secondary;
 }
 
 // Flash messages
 .alert-danger {
-  background-color: $primary-light;
-  border-color: $primary-light;
-  color: white;
+	background-color: $primary-light;
+	border-color: $primary-light;
+	color: white;
 }
 .alert-success {
-  background-color: $secondary-light;
-  color: $black;
-  border-color: $secondary-light;
+	background-color: $secondary-light;
+	color: $black;
+	border-color: $secondary-light;
 }
 
 // Edit Profile
 .btn-danger {
-  background-color: $primary-light;
-  border-color: $primary-light;
-  color: white;
-  font-size: 1.5rem;
-  transition: all 0.3s ease 0s;
-  padding: 0px 50px;
+	background-color: $primary-light;
+	border-color: $primary-light;
+	color: white;
+	font-size: 1.5rem;
+	transition: all 0.3s ease 0s;
+	padding: 0px 50px;
 }
 
 .btn-danger:hover {
-  background-color: $primary;
-  color: white;
+	background-color: $primary;
+	color: white;
 }
 
 .btn-danger:disabled {
-  background-color: $grey;
-  border-color: $grey;
+	background-color: $grey;
+	border-color: $grey;
 }
 
 .error {
-  color: $primary-dark;
+	color: $primary-dark;
 }
 .success {
-  color: $secondary-dark;
+	color: $secondary-dark;
 }
 
 .btn-outline-dark {
-  color: $black;
-  border-color: $grey;
+	color: $black;
+	border-color: $grey;
 }
 
 .btn-outline-dark:hover {
-  background-color: $grey;
-  border-color: $grey;
+	background-color: $grey;
+	border-color: $grey;
 }
 
 .profile-image {
-  width: 150px;
-  border-radius: 50%;
+	width: 150px;
+	border-radius: 50%;
+}
+
+// SHOW PAGE BOOKING FOOTER
+.fixed-bottom {
+	background-color: white;
+	border-top: 1px solid $grey;
+	padding: 16px 0;
+	height: 100px;
 }
 
 // Footer
 
 .footer {
-  background-color: #f6e4e6;
+	background-color: #f6e4e6;
 }
 
 @media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
 }
