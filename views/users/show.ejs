@@ -20,7 +20,11 @@
     <div class="col-lg-6">
       <div class="card border-0">
         <div class="inner">
-           <a href="/rooms/<%= room._id %>"><img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" /></a>
+          <% if(room.images[0]) { %>
+            <img src="<%= room.images[0].url %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
+          <% } else { %>
+            <img src="/images/placeholder.jpg" class="card-img-top thumbnails" alt="<%= room.name %>">
+          <% } %>
           <i class="far fa-heart fa-2x"></i>
           <div class="heart"></div>
           <i class="fas fa-heart fa-2x"></i>

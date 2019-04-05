@@ -22,7 +22,7 @@
           <i class="fas fa-heart fa-2x"></i>
         </div>
         <div class="card-body p-0 pt-2">
-          <p class="room-type mb-0">Entire Apartment · 1 bed</p>
+          <p class="room-type mb-0">Entire Home · 1 bed</p>
           <h5 class="card-title mb-1"><%= room.name %></h5>
           <p class="mb-0"><span class="price">$<%= room.price %></span><span class="room-type">/ Night</span></p>
           <% if (room.rating === 0) { %>
@@ -55,7 +55,11 @@
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
       <div class="card border-0">
         <div class="inner">
-           <a href="/rooms/<%= room._id %>"><img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" /></a>
+          <% if(room.images[0]) { %>
+            <img src="<%= room.images[0].url %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
+          <% } else { %>
+            <img src="/images/placeholder.jpg" class="card-img-top thumbnails" alt="<%= room.name %>">
+          <% } %>
           <i class="far fa-heart fa-2x"></i>
           <div class="heart"></div>
           <i class="fas fa-heart fa-2x"></i>
