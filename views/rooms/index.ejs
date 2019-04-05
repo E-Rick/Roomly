@@ -4,6 +4,7 @@
   <h1 class="text-center">Welcome to Roomly</h1>
   <p class="text-center">Find the perfect place to spend your next vacation</p>
 </header>
+
 <section id="latest">
   <h3>Recently Added</h3>
   <div class="row text-left">
@@ -11,7 +12,11 @@
     <div class="col-xl-3 col-lg-4 col-6 mb-4">
       <div class="card border-0">
         <div class="inner">
-          <img src="<%= room.image %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
+          <% if(room.images[0]) { %>
+            <img src="<%= room.images[0].url %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" class="card-img-top thumbnails" alt="<%= room.name %>" />
+          <% } else { %>
+            <img src="/images/placeholder.jpg" class="card-img-top thumbnails" alt="<%= room.name %>">
+          <% } %>
           <i class="far fa-heart fa-2x"></i>
           <div class="heart"></div>
           <i class="fas fa-heart fa-2x"></i>

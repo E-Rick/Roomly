@@ -7,7 +7,7 @@
           <% if (room.images) { %>
             <% room.images.forEach(function(image, index) { %>
             <div class="carousel-item <% if (index === 0) { %> active <% } %> ">
-              <img class="d-block w-100" src="<%= image.url %>" alt="Room image" style="height: auto; max-height: 70vh"/>
+              <img class="d-block w-100" src="<%= image.url %>" alt="Room image" style="height: auto; max-height: 70vh; overflow: hidden"/>
             </div>
             <% }); %>
           <% } %>
