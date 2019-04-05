@@ -4,13 +4,10 @@ Roomly is a RESTful fullstack web app inspired by Airbnb that I created to devel
 
 ## Features
 
-Roomly includes features such as dynamic pricing, user profiles, admin roles user authentication, flash messages, comments, rating and reviewing room listings.
+Roomly includes features such as dynamic pricing, user profiles, admin roles user authentication, password reset, image upload, geolocation with Mapbox, flash messages, comments, rating and reviewing room listings.
 
 ## Planned features
 
-* Password reset
-* Image upload with multer and cloudinary
-* Listing locations with Mapbox
 * Fuzzy search
 * Favoriting 
 * Pagination
