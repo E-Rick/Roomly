@@ -29,6 +29,10 @@
   color: white;
 }
 
+.col-md-10 {
+  line-height: 1.3;
+}
+
 @media (min-width: 1200px) {
   .footer {
     margin-bottom: 0;
@@ -41,5 +45,12 @@
   }
   .footer {
     margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  #book-btn {
+    padding: 10px 35px;
+    font-size: 1.3rem;
   }
 }

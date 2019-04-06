@@ -33,6 +33,10 @@ $black: #2c2928;
 	color: white;
 }
 
+.col-md-10 {
+	line-height: 1.3;
+}
+
 // -------- SHOW PAGE BOOKING FOOTER END -------
 
 // Extra large devices (large desktops, 1200px and up)
@@ -49,5 +53,12 @@ $black: #2c2928;
 	}
 	.footer {
 		margin-bottom: 100px;
+	}
+}
+
+@media (max-width: 576px) {
+	#book-btn {
+		padding: 10px 35px;
+		font-size: 1.3rem;
 	}
 }
