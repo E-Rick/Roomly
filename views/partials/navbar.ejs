@@ -11,15 +11,15 @@
     <span class="navbar-toggler-icon rotate"></span>
   </button>
   <!-- Navbar Search form -->
-  <form class="form-inline my-2 my-lg-0 d-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger m-2 my-sm-0 d-none d-inline-md" type="submit">Search</button>
-  </form>
+  <div class="form-inline form-group has-search">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
   <!-- Navbar collapse -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Navbar collapse links -->
     <div class="navbar-nav mr-auto">
-      <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Explore</a>
+      <a href="/rooms" class="nav-link nav-item ml-md-3 <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Explore</a>
     </div>
     <div class="navbar-nav navbar-right">
       <a href="/rooms/new" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'new' ? 'active' : '' %>">Become a host</a>
