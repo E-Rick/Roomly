@@ -34,7 +34,7 @@ body {
 }
 
 .navbar-light .navbar-toggler-icon {
-  background-image: url("/images/toggler.png");
+  background-image: url("/images/toggler.svg");
 }
 
 .form-control:focus {
@@ -55,8 +55,8 @@ body {
 }
 
 .rotate {
-  -webkit-transition: all .5s linear;
-  transition: all .5s linear;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
 }
 
 .rotate.down {
@@ -78,8 +78,10 @@ button.navbar-toggler:focus {
 
 .navbar-toggler-icon {
   position: relative;
-  top: 12px;
-  left: -12px;
+  top: 15px;
+  left: -8px;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .nav-link {
@@ -94,6 +96,8 @@ button.navbar-toggler:focus {
 
 .form-group.has-search {
   margin-bottom: 0;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 .has-search .form-control {
