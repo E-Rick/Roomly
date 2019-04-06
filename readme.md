@@ -11,6 +11,7 @@ Roomly includes features such as dynamic pricing, user profiles, admin roles, us
 * Fuzzy search
 * Favoriting 
 * Pagination
+* Booking 
 
 ## Tech/framework used
 
