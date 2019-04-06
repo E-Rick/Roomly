@@ -34,7 +34,7 @@ body {
 }
 
 .navbar-light .navbar-toggler-icon {
-  background-image: url("/images/down-arrow.png");
+  background-image: url("/images/toggler.png");
 }
 
 .form-control:focus {
@@ -64,12 +64,32 @@ body {
   transform: rotate(180deg);
 }
 
+button.navbar-brand {
+  margin-right: 0;
+}
+
 button.navbar-toggler {
   border: none !important;
 }
 
 button.navbar-toggler:focus {
   outline: none !important;
+}
+
+.navbar-toggler-icon {
+  position: relative;
+  top: 12px;
+  left: -12px;
+}
+
+.nav-link {
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-link:hover,
+.active {
+  border-bottom: 3px solid #767676;
 }
 
 #map {
@@ -93,16 +113,6 @@ button.navbar-toggler:focus {
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-}
-
-.nav-link {
-  font-weight: bold;
-  border-bottom: 3px solid transparent;
-}
-
-.nav-link:hover,
-.active {
-  border-bottom: 3px solid #767676;
 }
 
 .rating-stars {
@@ -349,5 +359,18 @@ button.navbar-toggler:focus {
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-light {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .nav-link:hover,
+  .active {
+    border-bottom: 3px solid transparent;
+    color: #cf5257;
   }
 }

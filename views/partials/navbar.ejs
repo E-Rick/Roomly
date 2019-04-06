@@ -1,26 +1,22 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-light bg-transparent mb-3">
   <!-- Navbar Brand-->
-  <a class="navbar-brand p-0" href="/">
+  <a class="navbar-brand p-0 d-none d-md-inline" href="/">
     <img src="/images/roomly-logo-01.svg" width="60" height="60" class="d-inline d-lg-none align-top" alt="">
     <img src="/images/roomly-text.svg" width="150" height="60" class="d-none d-lg-inline align-top" alt="">
   </a>
-  <!-- Navbar Search form -->
-  <form class="form-inline my-2 my-lg-0 d-none d-sm-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger m-2 my-sm-0" type="submit">Search</button>
-  </form>
   <!-- Navbar toggler -->
-  <button class="navbar-toggler rotate" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-brand p-0 navbar-toggler brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <img src="/images/roomly-logo-01.svg" width="60" height="60" class="d-inline d-lg-none align-top" alt="">
+    <span class="navbar-toggler-icon rotate"></span>
   </button>
+  <!-- Navbar Search form -->
+  <form class="form-inline my-2 my-lg-0 d-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-danger m-2 my-sm-0 d-none d-inline-md" type="submit">Search</button>
+  </form>
   <!-- Navbar collapse -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <!-- Navbar collapse search form -->
-    <form class="form-inline my-2 my-lg-0 d-sm-none">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger m-2 my-sm-0 px-5 px-sm-3" type="submit">Search</button>
-    </form>
     <!-- Navbar collapse links -->
     <div class="navbar-nav mr-auto">
       <a href="/rooms" class="nav-link nav-item <%= typeof page !== 'undefined' && page === 'rooms' ? 'active' : '' %>">Explore</a>

@@ -1,3 +1,3 @@
-$('.rotate').click(function() {
-	$(this).toggleClass('down');
+$('.brand').click(function() {
+	$('.rotate').toggleClass('down');
 });
