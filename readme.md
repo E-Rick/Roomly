@@ -4,7 +4,7 @@ Roomly is a RESTful fullstack web app inspired by Airbnb that I created to devel
 
 ## Features
 
-Roomly includes features such as dynamic pricing, user profiles, admin roles user authentication, password reset, image upload, geolocation with Mapbox, flash messages, comments, rating and reviewing room listings.
+Roomly includes features such as dynamic pricing, user profiles, admin roles, user authentication, password reset with SendGrid API, image upload with Cloudinary API and Multer, geolocation with Mapbox, flash messages, comments, rating and reviewing room listings.
 
 ## Planned features
 
@@ -20,8 +20,12 @@ Roomly includes features such as dynamic pricing, user profiles, admin roles use
 * Node.js
 * Express
 * MongoDB 
-* Ejs
+* EJS
 * Passport.js
+* Mongoose
+* SendGrid API
+* Cloudinary API
+* Multer
 
 ## Setup Up
 
