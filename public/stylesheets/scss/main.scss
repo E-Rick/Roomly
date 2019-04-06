@@ -237,11 +237,13 @@ button.navbar-toggler:focus {
 	margin-top: 6px;
 }
 
-.fa-lg {
-	margin-bottom: 6px;
+.delete.btn-danger {
+	background-color: $primary;
+	font-size: 1rem;
+	border-color: $primary;
 }
 
-#room-edit {
+.edit {
 	background-color: $secondary-dark;
 	border-color: $secondary-dark;
 	color: white;
@@ -250,15 +252,13 @@ button.navbar-toggler:focus {
 	padding: 0px 50px;
 }
 
+.fa-lg {
+	margin-bottom: 6px;
+}
+
 .btn-danger:hover {
 	background-color: $primary;
 	color: white;
-}
-
-#room-delete {
-	background-color: $primary;
-	font-size: 1rem;
-	border-color: $primary;
 }
 
 .form-signin {

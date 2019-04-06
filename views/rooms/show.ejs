@@ -1,4 +1,5 @@
 <% layout('layouts/room-show-layout') -%>
+<!-- Room image carousel -->
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col">
@@ -24,13 +25,15 @@
     </div>
   </div>
 </div>
+<!-- Room detail container -->
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
+      <!-- Room placeholder image -->
       <% if (!room.images[0]) { %>
       <img class="card-img-top w-100" src="<%= room.images %>" onError="this.onerror=null;this.src='/images/placeholder.jpg';" alt="First slide">
       <% } %>
-      <%# Show room card %>
+      <!-- Room description -->
       <div class="card mb-3 border-0">
         <div class="card-body pb-0">
           <h3 class="card-title"><strong><%= room.name %></strong></h3>
@@ -43,21 +46,22 @@
           <p class="card-text"><i class="fas fa-swimming-pool"></i> Pool</p>
           <p class="card-text"><i class="fas fa-utensils"></i> Kitchen</p>
           <% if (currentUser && (room.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
-          <a href="/rooms/<%= room._id %>/edit" id="room-edit" class="btn btn-sm btn-danger">Edit</a>
+          <a href="/rooms/<%= room._id %>/edit" class="edit btn btn-sm btn-primary">Edit</a>
           <form class="delete-form" action="/rooms/<%= room._id %>?_method=DELETE" method="POST">
-            <button id="room-delete" class="btn btn-sm btn-danger">Delete</button>
+            <button class="delete btn btn-sm btn-danger">Delete</button>
           </form>
           <% } %>
         </div>
       </div>
-      <div class="card border-0">
+      <!-- Room reviews -->
+      <div class="reviews card border-0">
         <div class="card-body py-0">
           <hr>
           <% if (room.rating === 0) { %>
-            <h2><strong>No reviews yet</strong></h2>
+            <h2 class="mt-3 mb-2" >No reviews yet</h2>
           <% } else { %>
           <p>
-            <strong><h3 class="d-inline"><%= room.reviews.length %> Reviews </h3></strong>
+            <strong><h3 class="d-inline"><%= room.reviews.length %> Review<% if(room.reviews.length !== 1) { %>s<% } %> </h3></strong>
             <span class="fa fa-star fa-lg checked"></span>
             <span class="fa fa-star fa-lg <% if (room.rating > 1.5) { %> checked <% } %>"></span>
             <span class="fa fa-star fa-lg <% if (room.rating > 2.5) { %> checked <% } %>"></span>
@@ -80,11 +84,11 @@
                 <%= review.text %>
               </p>
               <% if(currentUser && (review.author.id.equals(currentUser._id) || currentUser.isAdmin)){ %>
-              <a class="btn btn-sm btn-warning float-left mr-1"
+              <a class="edit btn btn-sm btn-warning float-left mr-1"
                 href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
               <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE"
                 method="POST">
-                <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                <input type="submit" class="delete btn btn-sm btn-danger" value="Delete">
               </form>
               <% } %>
             </div>
@@ -100,29 +104,33 @@
             <a id="newReview" class="btn btn-primary btn-md <% if (currentUser && room.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled d-none <% } %>"
               href="<% if (currentUser) { %> /rooms/<%= room._id %>/reviews/new <% } else { %> /login?returnTo=true <% } %>">
               Write a New Review</a>
+              <% if(room.reviews.length > 0) { %> 
+                <hr>
+              <% } %>
           </div>
         </div>
       </div>
-
-      <div class="card border-0">
+      <!-- Room neighborhood -->
+      <section class="neighborhood card border-0">
         <div class="card-body neighborhood pt-0">
-          <h2 class="mt-5 mb-2" >The neighborhood</h5>
+          <h2 class="mt-5 mb-2" >The neighborhood</h2>
           <p>This room is located in <%= room.location %></p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <div id='map'></div>
         </div>
-      </div>
+      </section>
 
     </div>
   </div>
 </div>
+<!-- Mapbox config -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
 <script>
   var room = <%- JSON.stringify(room) %>;
   mapboxgl.accessToken = "<%= mapBoxToken %>";
 </script>
 
-<!-- Booking Footer -->
+<!-- Room booking footer -->
 <div class="fixed-bottom d-xl-none">
   <div class="container">
     <div class="row justify-content-center">
@@ -153,7 +161,7 @@
               </div>
             </div>
             <div class="col-6">
-              <button type="button" class="btn btn-lg btn-dark float-right" id="book-btn">Book</button>
+              <button type="button" class="btn btn-lg btn-danger float-right" id="book-btn">Book</button>
             </div>
           </div>
         </div>

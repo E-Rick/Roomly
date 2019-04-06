@@ -31,10 +31,10 @@
                             <%= review.text %>
                         </p>
                         <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-sm btn-warning float-left mr-1"
+                        <a class="edit btn btn-sm btn-primary float-left mr-1"
                             href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
                         <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
-                            <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                            <input type="submit" class="delete btn btn-sm btn-danger" value="Delete">
                         </form>
                         <% } %>
                     </div>
