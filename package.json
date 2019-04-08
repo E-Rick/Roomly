@@ -21,6 +21,7 @@
     "express": "^4.16.4",
     "express-async-handler": "^1.1.4",
     "express-session": "^1.15.6",
+    "express-sslify": "^1.2.0",
     "faker": "^4.1.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.20",
