@@ -30,10 +30,3 @@ Roomly includes features such as dynamic pricing, user profiles, admin roles, us
 
 ## Setup Up
 
-To run this project, install the latest version of MongoDB and make sure all the dependencies are installed using npm, then run
-
-$ node App.js
-
-You should get a message saying "Roomly server has connected!" and you can view the application through your browser with localhost.
-
-Thats it !
