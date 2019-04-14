@@ -39,6 +39,26 @@ body {
 	}
 }
 
+#avatar {
+	border-radius: 50%;
+	margin: 15px 0px;
+}
+
+.navbar {
+	min-height: 80px;
+	border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.navbar-brand {
+	padding: 0 15px;
+	height: 80px;
+	line-height: 80px;
+}
+
+.navbar-nav {
+	height: 80px !important;
+}
+
 .button.navbar-toggler:focus {
 	outline: 1px none;
 }
@@ -80,13 +100,14 @@ button.navbar-toggler:focus {
 
 .navbar-toggler-icon {
 	position: relative;
-	top: 15px;
 	left: -8px;
 	width: 1.2rem;
 	height: 1.2rem;
 }
 
 .nav-link {
+	padding: 22px 8px;
+	line-height: 2.5;
 	font-weight: bold;
 	border-bottom: 3px solid transparent;
 }
@@ -117,7 +138,17 @@ button.navbar-toggler:focus {
 	color: #aaa;
 }
 // --------- Navbar End -----------------
-// MAPBOX
+// --------- Index Start ----------------
+section {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.jumbotron {
+	margin-bottom: 0;
+}
+// --------- Index End ------------------
+// --------- Mapbox Start ---------------
 #map {
 	width: 100%;
 	height: 200px;
@@ -139,7 +170,7 @@ button.navbar-toggler:focus {
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 }
-
+// --------- Mapbox End ---------------
 .rating-stars {
 	font-size: 40px;
 	cursor: pointer;
@@ -306,6 +337,9 @@ button.navbar-toggler:focus {
 }
 
 // Flash messages
+.alert {
+	margin-top: 1rem;
+}
 .alert-danger {
 	background-color: $primary-light;
 	border-color: $primary-light;
