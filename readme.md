@@ -1,6 +1,6 @@
 # Roomly
 
-Roomly is a RESTful fullstack web app inspired by Airbnb that I created to develop my fullstack development skills using the NEMO stack (Node.js, Express, MongoDB, Other Stuff). Roomly functions as an online marketplace that connects people who want to rent our their homes/rooms with people who are looking for accommodations in that locale.
+Roomly is a RESTful fullstack web app, inspired by other leading rental companies such as Airbnb, that I created to flex my fullstack development skills in MongoDB, ES6, Express, Node.js, and responsive web design. Roomly functions as an online marketplace that connects people who want to rent our their homes/rooms with people who are looking for accommodations in that locale.
 
 ![Imgur](https://i.imgur.com/RA3VQoQ.png)
 
