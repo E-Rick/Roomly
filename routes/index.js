@@ -1,33 +1,33 @@
-/* eslint-disable no-unused-vars */
 const router = require('express').Router(),
-  multer = require('multer'),
-  User = require('../models/user'),
-  { asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
-  {
-    postRegister,
-    postLogin,
-    getLogin,
-    getLogout,
-    getProfile,
-    getUser,
-    updateProfile,
-    getForgotPw,
-    putForgotPw,
-    getReset,
-    putReset
-  } = require('../controllers'),
-  { storage } = require('../cloudinary'),
-  upload = multer({ storage }),
-  Room = require('../models/room');
+	multer = require('multer'),
+	{ asyncErrorHandler, isLoggedIn, isValidPassword, changePassword } = require('../middleware'),
+	{
+		getExplore,
+		postRegister,
+		postLogin,
+		getLogin,
+		getLogout,
+		getProfile,
+		getUser,
+		updateProfile,
+		getForgotPw,
+		putForgotPw,
+		getReset,
+		putReset
+	} = require('../controllers'),
+	{ storage } = require('../cloudinary'),
+	upload = multer({ storage });
 
 // Root route
 router.get('/', (req, res) => {
-  res.render('landing');
+	res.render('landing');
 });
+
+router.get('/explore', getExplore);
 
 // show register form
 router.get('/register', (req, res) => {
-  res.render('register', { page: 'register' });
+	res.render('register', { page: 'register' });
 });
 
 // Handle signup logic route
@@ -46,12 +46,12 @@ router.get('/logout', getLogout);
 router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
 
 router.put(
-  '/profile',
-  upload.single('avatar'),
-  isLoggedIn,
-  asyncErrorHandler(isValidPassword),
-  asyncErrorHandler(changePassword),
-  asyncErrorHandler(updateProfile)
+	'/profile',
+	upload.single('avatar'),
+	isLoggedIn,
+	asyncErrorHandler(isValidPassword),
+	asyncErrorHandler(changePassword),
+	asyncErrorHandler(updateProfile)
 );
 
 router.get('/users/:id', asyncErrorHandler(getUser));
