@@ -1,17 +1,17 @@
 @font-face {
-  font-family: timeBurner;
-  src: url(/public/fonts/timeburnernormal.ttf);
+	font-family: timeBurner;
+	src: url(/public/fonts/timeburnernormal.ttf);
 }
 
 @font-face {
-  font-family: timeBurner;
-  src: url(/fonts/timeburnerbold.ttf);
-  font-weight: bold;
+	font-family: timeBurner;
+	src: url(/fonts/timeburnerbold.ttf);
+	font-weight: bold;
 }
 
 @font-face {
-  font-family: anodina;
-  src: url(/fonts/Anodina/Anodina.Regular.otf);
+	font-family: anodina;
+	src: url(/fonts/Anodina/Anodina.Regular.otf);
 }
 
 $primary-dark: #c12026;
@@ -25,138 +25,146 @@ $black: #2c2928;
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  background-color: white;
-  font-family: 'anodina', sans-serif;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+	font-family: 'anodina', sans-serif;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
 }
 
 h1 {
-  color: #2c2928;
+	color: #2c2928;
 }
 
 input {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.flash-messages {
+	padding: 0 !important;
 }
 
 .alert {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .form-signin {
-  margin-top: 20%;
-  margin-bottom: 1rem;
+	margin-top: 20%;
+	margin-bottom: 1rem;
 }
 
 .navbar-brand {
-  height: 80px;
-  width: 80px;
+	height: 80px;
+	width: 80px;
 }
 
 .btn-danger {
-  background-color: $primary-light;
-  border-color: $primary-light;
-  color: white;
-  font-size: 2rem;
-  transition: all 0.3s ease 0s;
-  padding: 0px 50px;
+	background-color: $primary-light;
+	border-color: $primary-light;
+	color: white;
+	font-size: 2rem;
+	transition: all 0.3s ease 0s;
+	padding: 0px 50px;
 }
 
 .btn-danger:hover {
-  background-color: $primary;
-  color: white;
+	background-color: $primary;
+	color: white;
 }
 
 .btn-primary {
-  background-color: $secondary;
-  border-color: $secondary;
-  color: white;
-  font-size: 2rem;
-  transition: all 0.3s ease 0s;
-  padding: 0px 50px;
+	background-color: $secondary;
+	border-color: $secondary;
+	color: white;
+	font-size: 2rem;
+	transition: all 0.3s ease 0s;
+	padding: 0px 50px;
 }
 
 .btn-primary:hover {
-  background-color: $secondary-dark;
-  color: white;
+	background-color: $secondary-dark;
+	color: white;
+}
+
+.other {
+	padding: 0;
 }
 
 .other .btn {
-  width: 100%;
-  margin: 1rem 0.5rem;
-  padding: 0.7rem 4rem;
+	width: 100%;
+	margin: 1rem 0rem;
+	padding: 0.7rem 4rem;
 }
 
 .text-link {
-  color: $grey;
+	color: $grey;
 }
 
 .text-link:hover {
-  color: $primary;
+	color: $primary;
 }
 
 #loginPhoto {
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  background: url(/images/login.jpg) center center no-repeat;
-  background-size: cover;
+	right: 0;
+	width: 100%;
+	height: 100vh;
+	background: url(/images/login.jpg) center center no-repeat;
+	background-size: cover;
 }
 
 .hr-text {
-  line-height: 1em;
-  position: relative;
-  outline: 0;
-  border: 0;
-  color: black;
-  text-align: center;
-  height: 1.5em;
-  opacity: 0.5;
+	line-height: 1em;
+	position: relative;
+	outline: 0;
+	border: 0;
+	color: black;
+	text-align: center;
+	height: 1.5em;
+	opacity: 0.5;
 }
 
 hr:before {
-  content: '';
-  background: linear-gradient(to right, transparent, #818078, transparent);
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: 1px;
+	content: '';
+	background: linear-gradient(to right, transparent, #818078, transparent);
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 1px;
 }
 
 hr:after {
-  content: attr(data-content);
-  position: relative;
-  display: inline-block;
-  color: black;
-  /* this is really the only tricky part, you need to specify the background color of the container element... */
-  padding: 0 0.5em;
-  line-height: 1.5em;
-  color: #818078;
-  background-color: #fcfcfa;
+	content: attr(data-content);
+	position: relative;
+	display: inline-block;
+	color: black;
+	/* this is really the only tricky part, you need to specify the background color of the container element... */
+	padding: 0 0.5em;
+	line-height: 1.5em;
+	color: #818078;
+	background-color: #fcfcfa;
 }
 
 // Flash messages
 .alert-danger {
-  background-color: $primary-light;
-  border-color: $primary-light;
-  color: white;
+	background-color: $primary-light;
+	border-color: $primary-light;
+	color: white;
 }
 .alert-success {
-  background-color: $secondary-light;
-  color: $black;
-  border-color: $secondary-light;
+	background-color: $secondary-light;
+	color: $black;
+	border-color: $secondary-light;
 }
 
 @media (max-width: 767.98px) {
-  .alert {
-    margin-top: 71px;
-  }
-  .navbar-brand {
-    height: 70px;
-    width: 70px;
-  }
+	.alert {
+		margin-top: 71px;
+	}
+	.navbar-brand {
+		height: 70px;
+		width: 70px;
+	}
 }

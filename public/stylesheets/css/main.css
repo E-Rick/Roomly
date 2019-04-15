@@ -29,6 +29,22 @@ body {
   }
 }
 
+@media (min-width: 768px) {
+  .navbar-nav {
+    height: 80px !important;
+  }
+  .nav-link {
+    padding: 22px 8px;
+    line-height: 2.5;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-link:hover,
+  .active {
+    border-bottom: 3px solid #767676;
+  }
+}
+
 #avatar {
   border-radius: 50%;
   margin: 15px 0px;
@@ -43,10 +59,6 @@ body {
   padding: 0 15px;
   height: 80px;
   line-height: 80px;
-}
-
-.navbar-nav {
-  height: 80px !important;
 }
 
 .button.navbar-toggler:focus {
@@ -103,18 +115,6 @@ button.navbar-toggler:focus {
   height: 1.2rem;
 }
 
-.nav-link {
-  padding: 22px 8px;
-  line-height: 2.5;
-  font-weight: bold;
-  border-bottom: 3px solid transparent;
-}
-
-.nav-link:hover,
-.active {
-  border-bottom: 3px solid #767676;
-}
-
 .form-group.has-search {
   margin-bottom: 0;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
@@ -143,8 +143,74 @@ section {
   margin-bottom: 40px;
 }
 
+h3 {
+  margin-bottom: 1rem;
+}
+
+#recommended img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100% !important;
+  width: 100% !important;
+}
+
 .jumbotron {
   margin-bottom: 0;
+}
+
+.card-img-description {
+  position: absolute !important;
+  bottom: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  padding-bottom: 32px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.card-text.place {
+  overflow-wrap: break-word !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 1.44444em !important;
+  color: white !important;
+  text-align: center !important;
+  margin: 0px !important;
+}
+
+.card-text.average {
+  overflow-wrap: break-word !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.28571em !important;
+  color: white !important;
+  text-align: center !important;
+  margin: 0px !important;
+}
+
+.card-title {
+  overflow-wrap: break-word !important;
+  line-height: 1.375em !important;
+  text-overflow: ellipsis !important;
+  max-height: 4.125em !important;
+  -webkit-line-clamp: 3 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  margin: 0px !important;
+  overflow: hidden !important;
+}
+
+.btn-outline-primary {
+  border-color: #64b5f6;
+  color: #64b5f6;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  padding: 14px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #64b5f6;
+  color: white;
 }
 
 #map {
@@ -251,6 +317,7 @@ section {
 
 .room-type {
   color: #767676;
+  margin-bottom: 2px;
 }
 
 .text-link {
@@ -426,10 +493,5 @@ section {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: start;
-  }
-  .nav-link:hover,
-  .active {
-    border-bottom: 3px solid transparent;
-    color: #cf5257;
   }
 }

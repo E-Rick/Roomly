@@ -33,6 +33,10 @@ input {
   margin-bottom: 1rem;
 }
 
+.flash-messages {
+  padding: 0 !important;
+}
+
 .alert {
   margin-top: 1rem;
 }
@@ -77,9 +81,13 @@ input {
   color: white;
 }
 
+.other {
+  padding: 0;
+}
+
 .other .btn {
   width: 100%;
-  margin: 1rem 0.5rem;
+  margin: 1rem 0rem;
   padding: 0.7rem 4rem;
 }
 
