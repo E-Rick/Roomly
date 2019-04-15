@@ -58,6 +58,13 @@ body {
 	}
 }
 
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+	.navbar {
+		box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	}
+}
+
 #avatar {
 	border-radius: 50%;
 	margin: 15px 0px;

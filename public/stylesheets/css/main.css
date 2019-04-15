@@ -45,6 +45,13 @@ body {
   }
 }
 
+@media (max-width: 767.98px) {
+  .navbar {
+    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  }
+}
+
 #avatar {
   border-radius: 50%;
   margin: 15px 0px;
