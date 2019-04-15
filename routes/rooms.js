@@ -1,11 +1,10 @@
-/* eslint-disable consistent-return */
 const express = require('express'),
-  router = express.Router(),
-  multer = require('multer'),
-  { storage } = require('../cloudinary'),
-  upload = multer({ storage }),
-  { roomIndex, roomCreate, roomNew, roomShow, roomEdit, roomUpdate, roomDestroy } = require('../controllers/rooms'),
-  { isLoggedIn, asyncErrorHandler, checkRoomOwnership } = require('../middleware');
+	router = express.Router(),
+	multer = require('multer'),
+	{ storage } = require('../cloudinary'),
+	upload = multer({ storage }),
+	{ roomIndex, roomCreate, roomNew, roomShow, roomEdit, roomUpdate, roomDestroy } = require('../controllers/rooms'),
+	{ isLoggedIn, asyncErrorHandler, checkRoomOwnership } = require('../middleware');
 
 // GET rooms index /rooms
 router.get('/', asyncErrorHandler(roomIndex));
