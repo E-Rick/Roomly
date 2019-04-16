@@ -14,7 +14,7 @@ module.exports = {
 		delete res.locals.dbQuery;
 		const rooms = await Room.paginate(dbQuery, {
 			page  : req.query.page || 1,
-			limit : 8
+			limit : 16
 		});
 		rooms.page = Number(rooms.page);
 		if (!rooms.docs.length && res.locals.query) {

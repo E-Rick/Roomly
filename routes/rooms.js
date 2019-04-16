@@ -4,10 +4,10 @@ const express = require('express'),
 	{ storage } = require('../cloudinary'),
 	upload = multer({ storage }),
 	{ roomIndex, roomCreate, roomNew, roomShow, roomEdit, roomUpdate, roomDestroy } = require('../controllers/rooms'),
-	{ isLoggedIn, asyncErrorHandler, checkRoomOwnership, searchAndFilterPosts } = require('../middleware');
+	{ isLoggedIn, asyncErrorHandler, checkRoomOwnership, searchAndFilterRooms } = require('../middleware');
 
 // GET rooms index /rooms
-router.get('/', asyncErrorHandler(searchAndFilterPosts), asyncErrorHandler(roomIndex));
+router.get('/', asyncErrorHandler(searchAndFilterRooms), asyncErrorHandler(roomIndex));
 
 // POST rooms create /rooms
 router.post('/', isLoggedIn, upload.array('images', 4), asyncErrorHandler(roomCreate));

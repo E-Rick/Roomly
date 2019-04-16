@@ -73,7 +73,6 @@ map.on('load', () => {
 		while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 		}
-
 		new mapboxgl.Popup().setLngLat(coordinates).setHTML(description).addTo(map);
 	});
 
