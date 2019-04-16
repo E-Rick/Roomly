@@ -159,6 +159,23 @@ h3 {
 	margin-bottom: 1rem;
 }
 
+#recommended .row,
+#top-rated .row,
+#latest .row {
+	margin-left: -7.5px;
+	margin-right: -7.5px;
+}
+
+#top-rated .col-md-4,
+#latest .col-lg-4 {
+	padding: 0px 8px !important;
+}
+
+#recommended .card {
+	max-height: 305px;
+	padding: 0px 8px !important;
+}
+
 #recommended img {
 	object-fit: cover;
 	height: 100% !important;
@@ -224,11 +241,28 @@ h3 {
 	background-color: $secondary;
 	color: white;
 }
+
+@media (max-width: 575.98px) {
+	#top-rated .col-md-4,
+	#latest .col-lg-4 {
+		padding: 0px 6px !important;
+	}
+
+	#recommended .card {
+		max-height: 305px;
+		padding: 0px 6px !important;
+	}
+}
 // --------- Index End ------------------
 // --------- Mapbox Start ---------------
 #map {
 	width: 100%;
 	height: 200px;
+}
+
+#map.index {
+	width: 100%;
+	height: 100% !important;
 }
 
 .marker {
