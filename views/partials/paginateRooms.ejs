@@ -2,7 +2,7 @@
  <% if(rooms.page - 1) { %>
  	<a href="/rooms?page=<%= rooms.page - 1 %><%= queryString %>">Prev</a>
  <% } %>
- <% if(posts.pages > 1 && posts.docs.length) { %>
+ <% if(rooms.pages > 1 && rooms.docs.length) { %>
  <% for(let i = 1; i <= rooms.pages; i++) { %>
  	<a href="/rooms?page=<%= i %><%= queryString %>" <%= i === rooms.page ? 'style=color:#000' : '' %>><%= i %></a>
  <% } %>
