@@ -165,7 +165,7 @@ const middleware = {
 		if (req.file) await cloudinary.v2.uploader.destroy(req.file.public_id);
 	},
 
-	async searchAndFilterPosts(req, res, next) {
+	async searchAndFilterRooms(req, res, next) {
 		const queryKeys = Object.keys(req.query);
 		if (queryKeys.length) {
 			const dbQueries = [];
