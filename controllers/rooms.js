@@ -10,15 +10,17 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
 
 module.exports = {
 	async roomIndex(req, res, next) {
-		const rooms = await Room.paginate(
-			{},
-			{
-				page  : req.query.page || 1,
-				limit : 8
-			}
-		);
+		const { dbQuery } = res.locals;
+		delete res.locals.dbQuery;
+		const rooms = await Room.paginate(dbQuery, {
+			page  : req.query.page || 1,
+			limit : 8
+		});
 		rooms.page = Number(rooms.page);
-		res.render('rooms/index', { rooms, page: 'rooms' });
+		if (!rooms.docs.length && res.locals.query) {
+			res.locals.error = 'No results match that query.';
+		}
+		res.render('rooms/index', { rooms, page: 'rooms', mapBoxToken });
 	},
 
 	async roomCreate(req, res, next) {
@@ -64,7 +66,7 @@ module.exports = {
 			res.render('rooms/show', { room, mapBoxToken });
 		} catch (err) {
 			req.flash('error', 'Sorry, No room listing with that ID not found.');
-			res.redirect('/rooms');
+			res.redirect('/explore');
 		}
 	},
 
@@ -129,6 +131,6 @@ module.exports = {
 		await Review.deleteMany({ _id: { $in: req.room.reviews } });
 		req.room.remove(); // delete the room
 		req.flash('success', `Listing "${req.room.name}" deleted successfully!`);
-		res.redirect('/rooms');
+		res.redirect('/explore');
 	}
 };

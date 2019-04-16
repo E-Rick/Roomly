@@ -40,7 +40,7 @@ module.exports = {
 				if (err) return res.render('register', { error: err.message });
 				passport.authenticate('local');
 				req.flash('success', `Successfully signed Up ${user.username}!`);
-				return res.redirect('/rooms');
+				return res.redirect('/explore');
 			});
 		} catch (err) {
 			deleteProfileImage(req);
@@ -62,7 +62,7 @@ module.exports = {
 	},
 
 	postLogin(req, res, next) {
-		const redirectUrl = req.session.redirectTo || '/rooms';
+		const redirectUrl = req.session.redirectTo || '/explore';
 		delete req.session.redirectTo;
 		passport.authenticate('local', {
 			successRedirect : redirectUrl,
@@ -75,7 +75,7 @@ module.exports = {
 	getLogout(req, res, next) {
 		req.logout();
 		req.flash('success', 'Successfully logged you out.');
-		res.redirect('/rooms');
+		res.redirect('/explore');
 	},
 
 	async getProfile(req, res, next) {

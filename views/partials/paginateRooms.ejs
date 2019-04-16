@@ -1,11 +1,13 @@
  <div style="margin: 20px 0">
  <% if(rooms.page - 1) { %>
- 	<a href="/rooms?page=<%= rooms.page - 1 %>">Prev</a>
+ 	<a href="/rooms?page=<%= rooms.page - 1 %><%= queryString %>">Prev</a>
  <% } %>
+ <% if(posts.pages > 1 && posts.docs.length) { %>
  <% for(let i = 1; i <= rooms.pages; i++) { %>
- 	<a href="/rooms?page=<%= i %>" <%= i === rooms.page ? 'style=color:#000' : '' %>><%= i %></a>
+ 	<a href="/rooms?page=<%= i %><%= queryString %>" <%= i === rooms.page ? 'style=color:#000' : '' %>><%= i %></a>
+ <% } %>
  <% } %>
  <% if((rooms.page + 1) <= rooms.pages) { %>
- 	<a href="/rooms?page=<%= rooms.page + 1 %>">Next</a>
+ 	<a href="/rooms?page=<%= rooms.page + 1 %><%= queryString %>">Next</a>
  <% } %>
  </div>
