@@ -1,22 +1,11 @@
-@font-face {
-	font-family: timeBurner;
-	src: url(/public/fonts/timeburnernormal.ttf);
-}
 
-@font-face {
-	font-family: timeBurner;
-	src: url(/public/fonts/timeburnerbold.ttf);
-	font-weight: bold;
-}
+@import './fonts';
+@import './variables';
 
 @font-face {
 	font-family: anodina;
 	src: url(/public/fonts/Anodina/Anodina-ExtraBold.otf);
 }
-
-$primary-dark: #c12026;
-$primary: #cf5257;
-$primary-light: #f7a8ab;
 
 body {
 	background-color: #000;

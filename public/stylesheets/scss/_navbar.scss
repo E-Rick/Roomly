@@ -1,0 +1,112 @@
+@media (min-width: 992px) {
+	.px-lg-6 {
+		padding-left: ($spacer * 5) !important;
+		padding-right: ($spacer * 5) !important;
+	}
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+	.navbar-nav {
+		height: 80px !important;
+	}
+
+	.nav-link {
+		padding: 22px 8px;
+		line-height: 2.5;
+		font-weight: bold;
+		border-bottom: 3px solid transparent;
+		&:hover,
+		&.active {
+			border-bottom: 3px solid $grey;
+		}
+	}
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+	.navbar {
+		box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+	}
+}
+
+#avatar {
+	border-radius: 50%;
+	margin: 15px 0px;
+}
+
+.navbar {
+	min-height: 80px;
+	border-bottom: 1px solid rgb(228, 228, 228);
+	&-brand {
+		padding: 0 15px;
+		height: 80px;
+		line-height: 80px;
+	}
+	& .navbar-toggler-icon {
+		background-image: url('/images/toggler.svg');
+		position: relative;
+		left: -8px;
+		width: 1.2rem;
+		height: 1.2rem;
+	}
+}
+
+button {
+	&.navbar-brand {
+		margin-right: 0;
+	}
+	&.navbar-toggler {
+		border: none !important;
+		&:focus {
+			outline: none !important;
+		}
+	}
+}
+
+.form-control:focus {
+	border-color: $grey;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(118, 118, 118, 0.6);
+}
+.btn-outline-danger {
+	border-color: $primary;
+	color: $primary;
+	&:hover {
+		border-color: $primary;
+		background-color: $primary;
+		color: white;
+	}
+}
+
+.rotate {
+	-moz-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+	&.down {
+		-moz-transform: rotate(180deg);
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+}
+
+.form-group.has-search {
+	margin-bottom: 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+	max-width: 460px;
+}
+
+.has-search .form-control {
+	padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+	position: absolute;
+	z-index: 2;
+	display: block;
+	width: 2.375rem;
+	height: 2.375rem;
+	line-height: 2.375rem;
+	text-align: center;
+	pointer-events: none;
+	color: #aaa;
+}

@@ -31,9 +31,9 @@
                             <%= review.text %>
                         </p>
                         <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
-                        <a class="edit btn btn-sm btn-primary float-left mr-1"
+                        <a class="edit btn btn-sm btn-primary mr-1"
                             href="/rooms/<%=room._id %>/reviews/<%=review._id %>/edit">Edit</a>
-                        <form id="delete-form" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
+                        <form class="d-inline" action="/rooms/<%=room._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
                             <input type="submit" class="delete btn btn-sm btn-danger" value="Delete">
                         </form>
                         <% } %>

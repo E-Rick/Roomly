@@ -9,17 +9,15 @@
   font-weight: bold;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+@font-face {
+  font-family: timeBurner;
+  src: url(/public/fonts/timeburnernormal.ttf);
 }
 
-body {
-  font-family: anodina, sans-serif;
-  height: 100%;
-  margin: 0;
-  margin-bottom: 60px;
-  padding: 0;
+@font-face {
+  font-family: timeBurner;
+  src: url(/public/fonts/timeburnerbold.ttf);
+  font-weight: bold;
 }
 
 @media (min-width: 992px) {
@@ -39,8 +37,7 @@ body {
     font-weight: bold;
     border-bottom: 3px solid transparent;
   }
-  .nav-link:hover,
-  .active {
+  .nav-link:hover, .nav-link.active {
     border-bottom: 3px solid #767676;
   }
 }
@@ -68,12 +65,24 @@ body {
   line-height: 80px;
 }
 
-.button.navbar-toggler:focus {
-  outline: 1px none;
+.navbar .navbar-toggler-icon {
+  background-image: url("/images/toggler.svg");
+  position: relative;
+  left: -8px;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
-.navbar-light .navbar-toggler-icon {
-  background-image: url("/images/toggler.svg");
+button.navbar-brand {
+  margin-right: 0;
+}
+
+button.navbar-toggler {
+  border: none !important;
+}
+
+button.navbar-toggler:focus {
+  outline: none !important;
 }
 
 .form-control:focus {
@@ -103,25 +112,6 @@ body {
   transform: rotate(180deg);
 }
 
-button.navbar-brand {
-  margin-right: 0;
-}
-
-button.navbar-toggler {
-  border: none !important;
-}
-
-button.navbar-toggler:focus {
-  outline: none !important;
-}
-
-.navbar-toggler-icon {
-  position: relative;
-  left: -8px;
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
 .form-group.has-search {
   margin-bottom: 0;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
@@ -143,6 +133,32 @@ button.navbar-toggler:focus {
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f6e4e6;
+}
+
+.footer .text-muted {
+  margin: 20px 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: anodina, sans-serif;
+  height: 100%;
+  margin: 0;
+  margin-bottom: 60px;
+  padding: 0;
 }
 
 section {
@@ -316,7 +332,7 @@ h3 {
   transition: all 1.5s ease;
 }
 
-.inner:hover img {
+.inner img:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
 }
@@ -376,12 +392,6 @@ h3 {
   margin-top: 6px;
 }
 
-.delete.btn-danger {
-  background-color: #cf5257;
-  font-size: 1rem;
-  border-color: #cf5257;
-}
-
 .edit {
   background-color: #2286c3;
   border-color: #2286c3;
@@ -394,47 +404,6 @@ h3 {
 
 .fa-lg {
   margin-bottom: 6px;
-}
-
-.btn-danger:hover {
-  background-color: #cf5257;
-  color: white;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-signin .form-control {
-  position: relative;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-
-.form-signin input[type='email'] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type='password'] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.delete-form {
-  display: inline;
 }
 
 .bd-placeholder-img {
@@ -486,6 +455,12 @@ h3 {
   border-color: #767676;
 }
 
+.btn-danger.delete {
+  background-color: #cf5257;
+  font-size: 1rem;
+  border-color: #cf5257;
+}
+
 .error {
   color: #c12026;
 }
@@ -507,19 +482,6 @@ h3 {
 .profile-image {
   width: 150px;
   border-radius: 50%;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f6e4e6;
-}
-
-.container .text-muted {
-  margin: 20px 0;
 }
 
 @media (min-width: 768px) {
