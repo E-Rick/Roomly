@@ -6,13 +6,12 @@ Roomly is a RESTful fullstack web app, inspired by other leading rental companie
 
 ## Features
 
-Roomly includes features such as dynamic pricing, user profiles, admin roles, user authentication, password reset with SendGrid API, image upload with Cloudinary API and Multer, geolocation with Mapbox, flash messages, comments, rating and reviewing room listings.
+Roomly includes features such as dynamic pricing, user profiles, admin roles, user authentication, search and filters, password reset with SendGrid API, image upload with Cloudinary API and Multer, geolocation and cluster maps with Mapbox API, flash messaging, rating and reviewing room listings.
 
 ## Planned features
 
-* Fuzzy search
-* Favoriting
-* Pagination
+* Finish search & filter feature
+* Favoriting with socket.io
 * Booking
 
 ## Tech/framework used
