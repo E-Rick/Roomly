@@ -36,8 +36,9 @@
       <!-- Room description -->
       <div class="card mb-3 border-0">
         <div class="card-body pb-0">
+          <img id="room-avatar" class="float-right" src="<%= room.author.id.avatar.secure_url %>" alt="Author Avatar" width="70px"/>
           <h3 class="card-title"><strong><%= room.name %></strong></h3>
-          <p><em>Submitted By <a href="/users/<%= room.author.id %>"><%= room.author.username %></a></em></p>
+          <p><em>Submitted By <a href="/users/<%= room.author.id._id %>"><%= room.author.username %></a></em></p>
           <hr />
           <p class="card-text"><%= room.description %></p>
           <hr />

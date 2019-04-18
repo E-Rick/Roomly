@@ -59,10 +59,12 @@ module.exports = {
 					path    : 'reviews',
 					options : { sort: { createdAt: -1 } }
 				})
+				.populate('author.id')
 				.exec();
 			// Check if valid room id length links to a room
 			// eslint-disable-next-line no-throw-literal
 			if (!room) throw 'Error';
+			const reviews = await Room.findById(req.params.id).populate('author.id').exec();
 			res.render('rooms/show', { room, mapBoxToken });
 		} catch (err) {
 			req.flash('error', 'Sorry, No room listing with that ID not found.');
