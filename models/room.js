@@ -1,6 +1,7 @@
 /* eslint-disable key-spacing */
 const mongoose = require('mongoose'),
 	mongoosePaginate = require('mongoose-paginate'),
+	User = require('./user'),
 	Review = require('./review');
 
 // SCHEMA SETUP
@@ -8,17 +9,17 @@ const mongoose = require('mongoose'),
 const roomSchema = new mongoose.Schema({
 	name        : String,
 	price       : Number,
-	images      : [ { url: String, public_id: String } ],
+	images      : [{ url: String, public_id: String }],
 	description : String,
 	location    : String,
 	geometry    : {
 		type        : {
 			type     : String,
-			enum     : [ 'Point' ],
+			enum     : ['Point'],
 			required : true
 		},
 		coordinates : {
-			type     : [ Number ],
+			type     : [Number],
 			required : true
 		}
 	},

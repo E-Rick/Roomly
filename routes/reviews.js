@@ -1,9 +1,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 const express = require('express'),
-  router = express.Router({ mergeParams: true }),
-  { reviewIndex, reviewCreate, reviewNew, deleteReview, reviewEdit, reviewUpdate } = require('../controllers/reviews'),
-  { asyncErrorHandler, isLoggedIn, checkReviewExistence, checkReviewOwnership, checkRoom } = require('../middleware');
+	router = express.Router({ mergeParams: true }),
+	{ reviewIndex, reviewCreate, reviewNew, deleteReview, reviewEdit, reviewUpdate } = require('../controllers/reviews'),
+	{ asyncErrorHandler, isLoggedIn, checkReviewExistence, checkReviewOwnership, checkRoom } = require('../middleware');
 
 // GET reviews index /rooms/:id/reviews
 router.get('/', asyncErrorHandler(reviewIndex));

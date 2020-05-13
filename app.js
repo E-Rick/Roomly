@@ -26,7 +26,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 	useCreateIndex   : true
 });
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+// app.use(enforce.HTTPS({ trustProtoHeader: true }));
 // use ejs-locals for all ejs templates
 app.engine('ejs', engine);
 app.use(express.json());
