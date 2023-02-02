@@ -10,7 +10,7 @@
 	"author": "Erick Martinez Jr.",
 	"license": "ISC",
 	"dependencies": {
-		"@mapbox/mapbox-sdk": "^0.6.0",
+		"@mapbox/mapbox-sdk": "^0.14.0",
 		"@sendgrid/mail": "^6.3.1",
 		"cloudinary": "^1.14.0",
 		"connect-flash": "^0.1.1",
